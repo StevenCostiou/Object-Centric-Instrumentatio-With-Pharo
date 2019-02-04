@@ -1,0 +1,41 @@
+!!Low-level techniques
+
+!!!Example
+!!!!Installing Talents
+aa
+[[[label=install|caption=Installation from Github|language=smalltalk
+
+Metacello new
+  baseline: 'Talents';
+  repository: 'github://tesonep/pharo-talents/src';
+  load.
+]]]
+
+!!!!Example
+bb
+[[[label=talent-example|caption=Installation from Github|language=smalltalk|lineNumber=true
+
+talent := Trait named: 'MyTalent'.
+talent compile: 'add: anObject
+anObject logCr.
+super add: anObject'.
+col := OrderedCollection new.
+col addTalent: talent.
+col add: 'This is an added object.'
+]]]
+
+
+
+!!!Evaluation
+cc
+
+@@note this is a note annotation.
+
+@@todo this is a todo annotation
+
+|!Country |!Capital
+|France | Paris
+|Belgium | Brussels
+|!Country |!Capital
+|France | Paris
+|Belgium | Brussels

@@ -1,0 +1,50 @@
+\changetocdepth {1}
+\contentsline {chapter}{Illustrations}{ii}{section*.1}
+\needspace {3\baselineskip }
+\contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
+\needspace {3\baselineskip }
+\contentsline {chapter}{\chapternumberline {2}What we are talking about}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Illustration example}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Evaluation criteria}{3}{section.2.2}
+\contentsline {section}{\numberline {2.3}Performance overhead evaluation}{3}{section.2.3}
+\needspace {3\baselineskip }
+\contentsline {chapter}{\chapternumberline {3}Anonymous subclasses}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}What are Talents}{5}{section.3.1}
+\contentsline {section}{\numberline {3.2}Example}{5}{section.3.2}
+\contentsline {subsection}{Installing Talents}{5}{section*.2}
+\contentsline {subsection}{Example}{5}{section*.3}
+\contentsline {section}{\numberline {3.3}Evaluation}{6}{section.3.3}
+\needspace {3\baselineskip }
+\contentsline {chapter}{\chapternumberline {4}Talents}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}What are Talents}{7}{section.4.1}
+\contentsline {section}{\numberline {4.2}Example}{7}{section.4.2}
+\contentsline {subsection}{Installing Talents}{7}{section*.4}
+\contentsline {subsection}{Example}{7}{section*.5}
+\contentsline {section}{\numberline {4.3}Evaluation}{7}{section.4.3}
+\needspace {3\baselineskip }
+\contentsline {chapter}{\chapternumberline {5}Proxies}{9}{chapter.5}
+\contentsline {section}{\numberline {5.1}What are Talents}{9}{section.5.1}
+\contentsline {section}{\numberline {5.2}Example}{9}{section.5.2}
+\contentsline {subsection}{Installing Talents}{9}{section*.6}
+\contentsline {subsection}{Example}{9}{section*.7}
+\contentsline {section}{\numberline {5.3}Evaluation}{10}{section.5.3}
+\needspace {3\baselineskip }
+\contentsline {chapter}{\chapternumberline {6}Reflectivity}{11}{chapter.6}
+\contentsline {section}{\numberline {6.1}What are Talents}{11}{section.6.1}
+\contentsline {section}{\numberline {6.2}Example}{11}{section.6.2}
+\contentsline {subsection}{Installing Talents}{11}{section*.8}
+\contentsline {subsection}{Example}{11}{section*.9}
+\contentsline {section}{\numberline {6.3}Evaluation}{11}{section.6.3}
+\needspace {3\baselineskip }
+\contentsline {chapter}{\chapternumberline {7}Low-level techniques}{13}{chapter.7}
+\contentsline {section}{\numberline {7.1}Example}{13}{section.7.1}
+\contentsline {subsection}{Installing Talents}{13}{section*.10}
+\contentsline {subsection}{Example}{13}{section*.11}
+\contentsline {section}{\numberline {7.2}Evaluation}{14}{section.7.2}
+\needspace {3\baselineskip }
+\contentsline {chapter}{\chapternumberline {8}Conclusion}{15}{chapter.8}
+\contentsline {section}{\numberline {8.1}Example}{15}{section.8.1}
+\contentsline {subsection}{Installing Talents}{15}{section*.12}
+\contentsline {subsection}{Example}{15}{section*.13}
+\contentsline {section}{\numberline {8.2}Evaluation}{16}{section.8.2}
+\contentsline {chapter}{Bibliography}{17}{chapter*.14}

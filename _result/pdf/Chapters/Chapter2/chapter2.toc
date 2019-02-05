@@ -3,6 +3,6 @@
 \needspace {3\baselineskip }
 \contentsline {chapter}{\chapternumberline {1}What we are talking about}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Illustration example}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Evaluation criteria}{1}{section.1.2}
-\contentsline {section}{\numberline {1.3}Performance overhead evaluation}{1}{section.1.3}
+\contentsline {section}{\numberline {1.2}Evaluation criteria}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Performance overhead evaluation}{2}{section.1.3}
 \contentsline {chapter}{Bibliography}{3}{chapter*.2}

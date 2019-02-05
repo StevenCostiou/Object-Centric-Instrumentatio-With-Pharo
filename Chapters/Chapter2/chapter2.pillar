@@ -1,14 +1,36 @@
 !!What we are talking about
 
+In the next chapters, we evaluate each technique following a three-fold evaluation. First, the studied technique is applied on a simple example of object-centric instrumentation. Second, the technique is evaluated against a set of desirable properties. Finally, performance overhead are evaluated. Only the raw solution is evaluated, without considering the possibility of enhancing the technique by building something on top.
+
 !!!Illustration example
+
+Each solution is experimented on a trivial example of object-centric behavior instrumentation. This example is illustrated in script *@motivation-example*. Two instances of ==OrderedCollection== are created, and to each of these instances is sent the ==add:== message with a string as a parameter. The instrumentation must happen in-between. We want to instrument the ==col1== object, so that when the ==add:== message is received, the size of the collection and the added object (passed as parameter) are printed in the ==Transcript==.
+
+[[[label=motivation-example|caption=Trivial example for object-centric instrumentation|language=Smalltalk|lineNumber=true
+|col1 col2|
+col1 := OrderedCollection new.
+col2 := OrderedCollection new.
+
+"...instrumentation must happen here..."
+
+col1 add: 'Hello World'.
+col2 add: 'Hello World'.
+]]]
+
 
 !!!Evaluation criteria
 
-- constraints: make a list and evaluate all solutions?
-- flexibility: no constraint on the source code
-- granularity: method, AST, other?
-- integration: is it integrated into the system?
-- self preservation: case of proxies?
+Each solution is evaluated agains the following desirable properties.
+
+|!Property|!Definition
+|Manipulated entity|The unit of instrumentation
+| |(''e.g.'' a class, a Trait, an object...)
+|Reusability|The entity can be reused to instrument different objects
+|Flexibility|Instrumentation does not put constraint on the
+| | source code or in the coding style
+|Granularity|The level of at which behavior can be instrumented
+| |(''e.g.'' method, AST...)
+|Integration|Instrumentation does not break system features
 
 
 !!!Performance overhead evaluation

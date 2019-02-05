@@ -360,6 +360,10 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr7.tfm
 INPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.lof
 INPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.lof
+OUTPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.listing
+INPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.listing
+INPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.listing
+INPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.listing
 INPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.bbl
 INPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.bbl
 OUTPUT /Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/_result/pdf/Chapters/Chapter2/chapter2.toc

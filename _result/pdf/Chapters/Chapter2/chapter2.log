@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  4 FEB 2019 21:53
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  5 FEB 2019 18:06
  restricted system commands enabled.
 **Chapters/Chapter2/chapter2.tex
 (./Chapters/Chapter2/chapter2.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.116 seconds
+luaotfload | main : initialization completed in 0.121 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (./_support/latex/sbabook/sbabook.cls
 
@@ -2088,23 +2088,36 @@ g;+pnum;+lnum;"
 .................................................
 LaTeX Font Info:    Font shape `TU/OpenSans(2)/bx/n' will be
 (Font)              scaled to size 20.69638pt on input line 95.
+LaTeX Font Info:    Font shape `TU/FiraMono(0)/m/n' will be
+(Font)              scaled to size 8.61679pt on input line 98.
+
+\openout5 = chapter2.listing
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
+ line 109.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/Chapters/Chapter2/chapter2.bbl
+_result/pdf/Chapters/Chapter2/chapter2.listing)
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1
 
 
 ]
-warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
-[2
+Overfull \hbox (14.93265pt too wide) in paragraph at lines 113--127
+[][]  
+ []
 
-]
+
+(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
+_result/pdf/Chapters/Chapter2/chapter2.bbl
+warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
+[2]
 bibitemlist
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [3] [4
+) [3
+
+] [4
 
 ]
 \tf@toc=\write8
@@ -2113,36 +2126,37 @@ LaTeX Warning: Empty `thebibliography' environment on input line 3.
 \tf@lof=\write9
 
 \openout9 = chapter2.lof
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 121.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 121.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 145.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 145.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
 _result/pdf/Chapters/Chapter2/chapter2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 121.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 121.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 145.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 145.
 Package rerunfilecheck Info: File `chapter2.out' has not changed.
 (rerunfilecheck)             Checksum: 0070F5FB8F393087E05293F75529B9D8;917.
 )
 
 Here is how much of LuaTeX's memory you used:
- 38672 strings out of 494413
+ 38791 strings out of 494413
  100000,953878 words of node,token memory allocated
  1373 words of node memory still in use:
    7 hlist, 5 vlist, 1 rule, 10 glue, 1 glyph, 14 attribute, 208 glue_spec, 14 a
 ttribute_list, 2 write, 4 pdf_literal nodes
-   avail lists: 1:3,2:311,3:99,4:24,5:65,6:19,7:1540,8:59,9:94,10:5,11:68
- 41562 multiletter control sequences out of 65536+600000
- 94 fonts using 13908807 bytes
- 67i,11n,122p,850b,442s stack positions out of 5000i,500n,10000p,200000b,100000s
-</usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opensans/OpenSans-Bold
-.ttf></usr/local/texlive/2018/texmf-dist/fonts/opentype/public/fira/FiraMono-Reg
-ular.otf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-tug/G
-enBkBasB.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-t
-ug/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opens
-ans/OpenSans-Regular.ttf>
-Output written on chapter2.pdf (8 pages, 70661 bytes).
+   avail lists: 1:3,2:857,3:161,4:22,5:276,6:25,7:1782,8:151,9:510,10:5,11:163
+ 41658 multiletter control sequences out of 65536+600000
+ 96 fonts using 14277031 bytes
+ 67i,12n,122p,850b,1084s stack positions out of 5000i,500n,10000p,200000b,100000s
+</usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-tug/GenBkBasI.
+ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opensans/OpenSans-
+Bold.ttf></usr/local/texlive/2018/texmf-dist/fonts/opentype/public/fira/FiraMono
+-Regular.otf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-t
+ug/GenBkBasB.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/genti
+um-tug/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/o
+pensans/OpenSans-Regular.ttf>
+Output written on chapter2.pdf (8 pages, 89998 bytes).
 
-PDF statistics: 122 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 131072)
+PDF statistics: 143 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 131072)
  124 words of extra memory for PDF output out of 10000 (max. 100000000)
 

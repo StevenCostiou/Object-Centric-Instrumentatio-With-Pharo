@@ -1,0 +1,8 @@
+|execTimes collection|
+execTimes := OrderedCollection new.
+collection := OrderedCollection new.
+1 to: 1000 do:[:i|
+  execTimes add: [
+    i logCr. "That line is removed for instrumented evaluations"
+    collection add: i] timeToRun].
+execTimes average

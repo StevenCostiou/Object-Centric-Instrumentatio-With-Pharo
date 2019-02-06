@@ -92,44 +92,9 @@
 
 \mainmatter
 
-\chapter{What we are talking about}
-In the next chapters, we evaluate each technique following a three-fold evaluation. First, the studied technique is applied on a simple example of object-centric instrumentation. Second, the technique is evaluated against a set of desirable properties. Finally, performance overhead are evaluated. Only the raw solution is evaluated, without considering the possibility of enhancing the technique by building something on top.
-\section{Illustration example}
-Each solution is experimented on a trivial example of object-centric behavior instrumentation. This example is illustrated in script \ref{motivation-example}. Two instances of \textcode{OrderedCollection} are created, and to each of these instances is sent the \textcode{add:} message with a string as a parameter. The instrumentation must happen in-between. We want to instrument the \textcode{col1} object, so that when the \textcode{add:} message is received, the size of the collection and the added object (passed as parameter) are printed in the \textcode{Transcript}.
+\chapter{Summary of the overall evaluations}
+If you already know Pharo and (some of) the presented technique, this chapter is a global summary with spoilers.
 
-\begin{listing}[float, label=motivation-example]{smalltalk}{Trivial example for object-centric instrumentation}
-|col1 col2|
-col1 := OrderedCollection new.
-col2 := OrderedCollection new.
-
-"...instrumentation must happen here..."
-
-col1 add: 'Hello World'.
-col2 add: 'Hello World'.
-\end{listing}
-\section{Evaluation criteria}
-Each solution is evaluated agains the following desirable properties.
-
-\begin{tabular}{ll}
-\toprule
-\textbf{Property} & \textbf{Definition} \\
-\midrule
-Manipulated entity & The unit of instrumentation \\
- & (\textit{e.g.} a class, a Trait, an object...) \\
-Reusability & The entity can be reused to instrument different objects \\
-Flexibility & Instrumentation does not put constraint on the \\
- & source code or in the coding style \\
-Granularity & The level of at which behavior can be instrumented \\
- & (\textit{e.g.} method, AST...) \\
-Integration & Instrumentation does not break system features \\
-\bottomrule
-\end{tabular}
-\section{Performance overhead evaluation}
-\begin{itemize}
-\item source code with instrumentation example
-\item describe the used method
-\item describe the limitations of the method
-\end{itemize}
 
 
 

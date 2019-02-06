@@ -1,3 +1,51 @@
 !!Introduction
 
-This booklet is about object-centric instrumentation in Pharo. An instrumentation is object-centric if it applies to one specific object (or a set of objects), without consideration of its class. It means the instrumentation can be applied on one object, leaving untouched all other instances of its class, or to an heterogeneous set of instances of different classes. This booklet gives an overview of available object-centric instrumentation techniques in Pharo, either present in the standard distribution or available on download. We will not go into deep technical usage description, nor into implementation details. Each chapter illustrates one solution with examples, and gives the necessary references if one wants to go deeper in the study of the solution. Each solution is evaluated against a set of criteria presented in Chapter 2, along with a short performance overhead evaluation.
+This booklet is about object-centric instrumentation in Pharo. An instrumentation is object-centric if it applies to one specific object (or a set of objects), without consideration of its class. It means the instrumentation can be applied on one object, leaving untouched all other instances of its class, or to an heterogeneous set of instances of different classes. This booklet gives an overview of available object-centric instrumentation techniques in Pharo, either present in the standard distribution or available on download. We will not go into deep technical usage description, nor into implementation details. Each chapter illustrates one solution with examples, and gives the necessary references if one wants to go deeper in the study of the solution. We study each technique following a three-fold evaluation. First, the studied technique is applied on a simple example of object-centric instrumentation. Second, the technique is evaluated against a set of desirable properties. Finally, performance overhead are evaluated. Only the raw solution is evaluated, without considering the possibility of enhancing the technique by building something on top.
+
+!!!Illustration example
+
+Each studied solution is experimented on a trivial example of object-centric behavior instrumentation. This example is illustrated in script *@motivation-example*. Two instances of ==OrderedCollection== are created, and to each of these instances is sent the ==add:== message with a string as a parameter. The instrumentation must happen in-between. We want to instrument the ==col1== object, so that when the ==add:== message is received, the size of the collection and the added object (passed as parameter) are printed in the ==Transcript==. The ==col2== object must remain unnaffected.
+
+[[[label=motivation-example|caption=Trivial example for object-centric instrumentation|language=Smalltalk|lineNumber=true
+|col1 col2|
+col1 := OrderedCollection new.
+col2 := OrderedCollection new.
+
+"...instrumentation must happen here..."
+
+col1 add: 'Hello World'.
+col2 add: 'Hello World'.
+]]]
+
+!!!Evaluation criteria
+
+Each solution is evaluated against the following desirable properties.
+
+|!Property|!Definition
+|Manipulated entity|The unit of instrumentation
+| |(''e.g.'' a class, a Trait, an object...)
+|Reusability|The entity can be reused to instrument different objects
+|Flexibility|Instrumentation does not put constraint on the
+| | source code or in the coding style
+|Granularity|The level of at which behavior can be instrumented
+| |(''e.g.'' method, AST...)
+|Integration|Instrumentation does not break system features
+
+
+!!!Performance overhead evaluation
+
+To provide a approximation of the performance overhead due to instrumentation, we compare the execution time of a block of code without instrumentation with the execution time of an instrumented block of code. Script *@performance-overhead-method* shows how the average execution time is computed. An ordered collection is instantiated (==collection==) and the ==add:== message is sent 1000 times to that object. Before actually sending that message to the collection, the parameter is logged in the Transcript. Each time, the execution time of the parameter logging and the ==add:== method is stored into the ==execTime== collection. The average execution time is computed from the stored results. One reference evaluation is performed without instrumentation. This reference average time is used for comparison with instrumented versions evaluations. For each studied technique, the same code is executed, but with an object-centric instrumentation put on the ==collection== object. However, that time the logging instruction of the ==add:== mesage parameter is removed from the script, and added as an object-centric instrumentation on the ==add:== method of the collection object. We suppose that the execution time of this instruction is constant, so that we can isolate the cost of the instrumentation mechanism and compare it against the cost of having the instrumentation code hard-coded.
+
+[[[label=performance-overhead-method|caption=Performance overhead evaluation script|language=Smalltalk|lineNumber=true
+|execTimes collection|
+execTimes := OrderedCollection new.
+collection := OrderedCollection new.
+1 to: 1000 do:[:i|
+  execTimes add: [
+    i logCr. "That line is removed for instrumented evaluations"
+    collection add: i] timeToRun].
+execTimes average
+]]]
+
+!!!Structure of the book
+The second chapter will provide an overview of the evaluation results of object-centric instrumentation techniques available in Pharo. A reader may directly read this chapter if he is already familiar with the Pharo techniques presented in the book. Chapters 3 to 7 describe five solutions for object-centric instrumentation, and provide an evaluation of these solutions. Chapter 8 drafts the premises of an object-centric debugger and concludes the book.

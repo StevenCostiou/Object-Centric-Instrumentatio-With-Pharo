@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  5 FEB 2019 18:06
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  6 FEB 2019 16:49
  restricted system commands enabled.
 **index.tex
 
@@ -36,7 +36,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.132 seconds
+luaotfload | main : initialization completed in 0.111 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
@@ -1924,16 +1924,37 @@ warning  (pdf backend): objcompresslevel > 0 requires minorversion > 4
 
 \openout7 = index.out
 LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
-(Font)              scaled to size 21.11171pt on input line 34.
+(Font)              scaled to size 42.42706pt on input line 34.
+LaTeX Font Info:    Font shape `TU/OpenSans(0)/bx/n' will be
+(Font)              scaled to size 41.5924pt on input line 34.
+
+
+Package varwidth Warning: Failed to reprocess entire contents on input line 34.
+
+
+Package varwidth Warning: Failed to reprocess entire contents on input line 34.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 34.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 34.
 LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
-(Font)              scaled to size 9.29152pt on input line 34.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 34.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 34.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 34.
- [1
+(Font)              scaled to size 21.11171pt on input line 34.
+
+Package varwidth Warning: Failed to reprocess entire contents on input line 34.
+
+
+Package varwidth Warning: Failed to reprocess entire contents on input line 34.
+
+LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
+(Font)              scaled to size 14.66278pt on input line 34.
+
+Package varwidth Warning: Failed to reprocess entire contents on input line 34.
+
+
+Package varwidth Warning: Failed to reprocess entire contents on input line 34.
+
+[1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
@@ -1941,8 +1962,8 @@ LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 64.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 64.
-<_support/latex/sbabook/CreativeCommons-BY-SA.pdf, id=185, 120.45pt x 42.1575pt>
+(Font)              <6> on input line 64.
+<_support/latex/sbabook/CreativeCommons-BY-SA.pdf, id=196, 120.45pt x 42.1575pt>
 
 File: _support/latex/sbabook/CreativeCommons-BY-SA.pdf Graphic file (type pdf)
 <use _support/latex/sbabook/CreativeCommons-BY-SA.pdf>
@@ -1967,17 +1988,17 @@ LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
 (Font)              scaled to size 8.48541pt on input line 2.
 LaTeX Font Info:    Font shape `TU/OpenSans(0)/bx/n' will be
 (Font)              scaled to size 8.31848pt on input line 2.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 2.
 )
 LaTeX Font Info:    Font shape `TU/OpenSans(0)/bx/n' will be
 (Font)              scaled to size 7.48663pt on input line 91.
  [1
 
 
-]
+] [2]
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/index.lof) [2
+_result/pdf/index.lof) [3
+
+] [4
 
 ]
 LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
@@ -1999,33 +2020,33 @@ LaTeX Font Info:    Font shape `TU/OpenSans(0)/bx/n' will be
 . 
 . OpenSans scale = 0.8485398099545182.
 .................................................
-luaotfload | aux : font no 81 (nil) does not define feature smcp for script latn
+luaotfload | aux : font no 76 (nil) does not define feature smcp for script latn
  with language dflt
-luaotfload | aux : no font with id 81
+luaotfload | aux : no font with id 76
 .................................................
 . fontspec info: "set-scale"
 . 
 . OpenSansBold scale = 0.8318432219017264.
 .................................................
-luaotfload | aux : font no 83 (nil) does not define feature smcp for script latn
+luaotfload | aux : font no 78 (nil) does not define feature smcp for script latn
  with language dflt
-luaotfload | aux : no font with id 83
+luaotfload | aux : no font with id 78
 .................................................
 . fontspec info: "set-scale"
 . 
 . OpenSans/I scale = 0.8485398099545182.
 .................................................
-luaotfload | aux : font no 85 (nil) does not define feature smcp for script latn
+luaotfload | aux : font no 80 (nil) does not define feature smcp for script latn
  with language dflt
-luaotfload | aux : no font with id 85
+luaotfload | aux : no font with id 80
 .................................................
 . fontspec info: "set-scale"
 . 
 . OpenSans/BI scale = 0.8318432219017264.
 .................................................
-luaotfload | aux : font no 84 (nil) does not define feature smcp for script latn
+luaotfload | aux : font no 79 (nil) does not define feature smcp for script latn
  with language dflt
-luaotfload | aux : no font with id 84
+luaotfload | aux : no font with id 79
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -2075,33 +2096,33 @@ LaTeX Font Info:    Font shape `TU/OpenSans(0)/bx/n' will be
 . 
 . OpenSans scale = 0.8485397528283549.
 .................................................
-luaotfload | aux : font no 89 (nil) does not define feature smcp for script latn
+luaotfload | aux : font no 84 (nil) does not define feature smcp for script latn
  with language dflt
-luaotfload | aux : no font with id 89
+luaotfload | aux : no font with id 84
 .................................................
 . fontspec info: "set-scale"
 . 
 . OpenSansBold scale = 0.8318426885756428.
 .................................................
-luaotfload | aux : font no 91 (nil) does not define feature smcp for script latn
+luaotfload | aux : font no 86 (nil) does not define feature smcp for script latn
  with language dflt
-luaotfload | aux : no font with id 91
+luaotfload | aux : no font with id 86
 .................................................
 . fontspec info: "set-scale"
 . 
 . OpenSans/I scale = 0.8485397528283549.
 .................................................
-luaotfload | aux : font no 93 (nil) does not define feature smcp for script latn
+luaotfload | aux : font no 88 (nil) does not define feature smcp for script latn
  with language dflt
-luaotfload | aux : no font with id 93
+luaotfload | aux : no font with id 88
 .................................................
 . fontspec info: "set-scale"
 . 
 . OpenSans/BI scale = 0.8318426885756428.
 .................................................
-luaotfload | aux : font no 92 (nil) does not define feature smcp for script latn
+luaotfload | aux : font no 87 (nil) does not define feature smcp for script latn
  with language dflt
-luaotfload | aux : no font with id 92
+luaotfload | aux : no font with id 87
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -2130,14 +2151,30 @@ g;+pnum;+lnum;"
 .................................................
 LaTeX Font Info:    Font shape `TU/OpenSans(2)/bx/n' will be
 (Font)              scaled to size 20.69638pt on input line 95.
+LaTeX Font Info:    Font shape `TU/FiraMono(0)/m/n' will be
+(Font)              scaled to size 8.61679pt on input line 98.
 
+\openout5 = index.listing
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
+ line 109.
+
+(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
+_result/pdf/index.listing)
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1
 
-
 ]
+Overfull \hbox (14.93265pt too wide) in paragraph at lines 113--127
+[][]  
+ []
+
+
+\openout5 = index.listing
+
+(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
+_result/pdf/index.listing)
 warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
-[2
+[2] [3] [4
 
 ]
 .................................................
@@ -2150,20 +2187,9 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
 . 
 . OpenSans scale = 0.8485397528283549.
 .................................................
-LaTeX Font Info:    Font shape `TU/FiraMono(0)/m/n' will be
-(Font)              scaled to size 8.61679pt on input line 101.
+ [5] [6
 
-\openout5 = index.listing
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
- line 112.
-
-(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/index.listing) [3]
-Overfull \hbox (14.93265pt too wide) in paragraph at lines 116--130
-[][]  
- []
-
-[4]
+]
 .................................................
 . fontspec info: "set-scale"
 . 
@@ -2175,9 +2201,9 @@ Overfull \hbox (14.93265pt too wide) in paragraph at lines 116--130
 . OpenSans scale = 0.8485397528283549.
 .................................................
 LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
-(Font)              scaled to size 10.1825pt on input line 136.
+(Font)              scaled to size 10.1825pt on input line 146.
 LaTeX Font Info:    Font shape `TU/OpenSans(0)/bx/n' will be
-(Font)              scaled to size 9.98218pt on input line 136.
+(Font)              scaled to size 9.98218pt on input line 146.
 
 \openout5 = index.listing
 
@@ -2186,30 +2212,7 @@ _result/pdf/index.listing)
 \openout5 = index.listing
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/index.listing) [5
-
-] [6]
-.................................................
-. fontspec info: "set-scale"
-. 
-. OpenSans scale = 0.8485398099545182.
-.................................................
-.................................................
-. fontspec info: "set-scale"
-. 
-. OpenSans scale = 0.8485397528283549.
-.................................................
-
-\openout5 = index.listing
-
-(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/index.listing)
-\openout5 = index.listing
-
-(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/index.listing) [7
-
-] [8]
+_result/pdf/index.listing) [7] [8]
 .................................................
 . fontspec info: "set-scale"
 . 
@@ -2293,16 +2296,34 @@ _result/pdf/index.listing)
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
 _result/pdf/index.listing) [15
 
+] [16]
+.................................................
+. fontspec info: "set-scale"
+. 
+. OpenSans scale = 0.8485398099545182.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. OpenSans scale = 0.8485397528283549.
+.................................................
+
+\openout5 = index.listing
+
+(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
+_result/pdf/index.listing)
+\openout5 = index.listing
+
+(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
+_result/pdf/index.listing) [17
+
 ]
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/index.bbl [16]
+_result/pdf/index.bbl [18]
 bibitemlist
+) [19
 
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
-
-) [17
-
-] [18
+] [20
 
 ]
 \tf@toc=\write8
@@ -2311,41 +2332,44 @@ LaTeX Warning: Empty `thebibliography' environment on input line 3.
 \tf@lof=\write9
 
 \openout9 = index.lof
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 428.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 428.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 438.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 438.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
 _result/pdf/index.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 428.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 428.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 438.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 438.
 Package rerunfilecheck Info: File `index.out' has not changed.
-(rerunfilecheck)             Checksum: 850C870161FC2261C435B8366EFEB655;4847.
+(rerunfilecheck)             Checksum: 80F1484624FB8D11B9204E617E80ADBF;5061.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
 )
+(\end occurred when \ifx on line 34 was incomplete)
 
 Here is how much of LuaTeX's memory you used:
- 39198 strings out of 494413
+ 39402 strings out of 494413
  100000,1144653 words of node,token memory allocated
  1455 words of node memory still in use:
    7 hlist, 5 vlist, 1 rule, 10 glue, 8 glyph, 21 attribute, 209 glue_spec, 21 a
 ttribute_list, 2 write, 4 pdf_literal nodes
-   avail lists: 1:3,2:1466,3:294,4:36,5:438,6:65,7:2076,8:256,9:864,10:6,11:163
- 41724 multiletter control sequences out of 65536+600000
- 99 fonts using 14716807 bytes
- 67i,12n,122p,905b,1084s stack positions out of 5000i,500n,10000p,200000b,100000s
+   avail lists: 1:2,2:1701,3:296,4:36,5:635,6:67,7:4207,8:382,9:1229,10:15,11:36
+7
+ 41908 multiletter control sequences out of 65536+600000
+ 94 fonts using 14514007 bytes
+ 67i,12n,122p,1476b,1082s stack positions out of 5000i,500n,10000p,200000b,100000s
 </usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-tug/GenBkBasI.
-ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opensans/OpenSans-
-Bold.ttf></usr/local/texlive/2018/texmf-dist/fonts/opentype/public/fira/FiraMono
--Regular.otf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-t
-ug/GenBkBasB.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/genti
-um-tug/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/o
-pensans/OpenSans-Regular.ttf>
-Output written on index.pdf (22 pages, 144380 bytes).
+ttf></usr/local/texlive/2018/texmf-dist/fonts/opentype/public/fira/FiraMono-Regu
+lar.otf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-tug/Ge
+nBkBasB.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-tu
+g/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opensa
+ns/OpenSans-Regular.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/publi
+c/opensans/OpenSans-Bold.ttf></usr/local/texlive/2018/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr7.pfb>
+Output written on index.pdf (26 pages, 170673 bytes).
 
-PDF statistics: 485 PDF objects out of 1000 (max. 8388607)
- 174 named destinations out of 1000 (max. 131072)
- 404 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 535 PDF objects out of 1000 (max. 8388607)
+ 190 named destinations out of 1000 (max. 131072)
+ 442 words of extra memory for PDF output out of 10000 (max. 100000000)
 

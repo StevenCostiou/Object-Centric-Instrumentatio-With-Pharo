@@ -1,8 +1,0 @@
-|col1 col2|
-col1 := OrderedCollection new.
-col2 := OrderedCollection new.
-
-"...instrumentation must happen here..."
-
-col1 add: 'Hello World'.
-col2 add: 'Hello World'.

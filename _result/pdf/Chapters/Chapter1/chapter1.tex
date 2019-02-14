@@ -93,20 +93,36 @@
 \mainmatter
 
 \chapter{Introduction}
-This booklet is about object-centric instrumentation in Pharo. An instrumentation is object-centric if it applies to one specific object (or a set of objects), without consideration of its class. It means the instrumentation can be applied on one object, leaving untouched all other instances of its class, or to an heterogeneous set of instances of different classes. This booklet gives an overview of available object-centric instrumentation techniques in Pharo, either present in the standard distribution or available on download. We will not go into deep technical usage description, nor into implementation details. Each chapter illustrates one solution with examples, and gives the necessary references if one wants to go deeper in the study of the solution. We study each technique following a three-fold evaluation. First, the studied technique is applied on a simple example of object-centric instrumentation. Second, the technique is evaluated against a set of desirable properties. Finally, performance overhead are evaluated. Only the raw solution is evaluated, without considering the possibility of enhancing the technique by building something on top.
+This booklet is about object-centric instrumentation in Pharo. An instrumentation is object-centric if it applies to one specific object (or a set of objects), without consideration of its class. It means the instrumentation can be applied on one object, leaving untouched all other instances of its class, or to an heterogeneous set of instances of different classes. This booklet gives an overview of available object-centric instrumentation techniques in Pharo, either present in the standard distribution or available on download. We only focus on object-centric state-access instrumentation, which is a particular case of object-centric instrumentation. We will not go into deep technical usage description, nor into implementation details. Each chapter illustrates one solution with examples, and gives the necessary references if one wants to go deeper in the study of the solution. We study each technique following a three-fold evaluation. First, the studied technique is applied on a simple example of object-centric instrumentation. Second, the technique is evaluated against a set of desirable properties. Finally, performance overhead are evaluated. Only the raw solution is evaluated, without considering the possibility of enhancing the technique by building something on top.
+
+This chapter presents the three-fold evaluation applied to each studied technique, based on the current stable Pharo 7. Each time, a new Pharo image is created, the evaluation code is loaded as well as the studied solution's packages if needed. Then the evaluation is performed. The evaluation code presented in this chapter is available on Github at the following address:
+
+https://github.com/StevenCostiou/PharoObjectCentricEvaluationExamples
 \section{Illustration example}
-Each studied solution is experimented on a trivial example of object-centric behavior instrumentation. This example is illustrated in script \ref{motivation-example}. Two instances of \textcode{OrderedCollection} are created, and to each of these instances is sent the \textcode{add:} message with a string as a parameter. The instrumentation must happen in-between. We want to instrument the \textcode{col1} object, so that when the \textcode{add:} message is received, the size of the collection and the added object (passed as parameter) are printed in the \textcode{Transcript}. The \textcode{col2} object must remain unnaffected.
+Each studied solution is experimented on an example of object-centric behavior instrumentation. We use a class \textcode{Person} defined in the following script. This class has a \textcode{name} instance variable and a \textcode{name:} method. This method stores the parameter it is given into the instance variable. We would like that each time a value is stored in that instance variable, that value is printed on the \textcode{Transcript}.
 
-\begin{listing}[float, label=motivation-example]{smalltalk}{Trivial example for object-centric instrumentation}
-|col1 col2|
-col1 := OrderedCollection new.
-col2 := OrderedCollection new.
+\begin{displaycode}{plain}
+Person >> name: aName
+    name := aName
+\end{displaycode}
 
-"...instrumentation must happen here..."
+The instrumentation can be defined as follows, if \textcode{aName} is the reference to the value being stored in the \textcode{name} instance variable of the \textcode{Person} instance:
 
-col1 add: 'Hello World'.
-col2 add: 'Hello World'.
-\end{listing}
+\begin{displaycode}{plain}
+aName logCr
+\end{displaycode}
+
+The evaluation example is defined in the following script. Two instances \textcode{p1} and \textcode{p2} of class \textcode{Person} are created, and object-centric instrumentation must be applied to the \textcode{p2} instance. Then each of these instances is given a name through a call to the \textcode{name:} method. The result must be that \textcode{p2} prints its name in the \textcode{Transcript}, while nothing must happen for \textcode{p1}.
+
+\begin{displaycode}{plain}
+  |p1 p2|
+  p1 := Person new.
+  p2 := Person new.
+  "Instrumentation must be applied to p2 here"
+  p1 name: 'Worf'.
+  p2 name: 'Dax'.
+  "Only 'Dax' prints in the Transcript"
+\end{displaycode}
 \section{Evaluation criteria}
 Each solution is evaluated against the following desirable properties.
 
@@ -125,18 +141,16 @@ Integration & Instrumentation does not break system features \\
 \bottomrule
 \end{tabular}
 \section{Performance overhead evaluation}
-To provide a approximation of the performance overhead due to instrumentation, we compare the execution time of a block of code without instrumentation with the execution time of an instrumented block of code. Script \ref{performance-overhead-method} shows how the average execution time is computed. An ordered collection is instantiated (\textcode{collection}) and the \textcode{add:} message is sent 1000 times to that object. Before actually sending that message to the collection, the parameter is logged in the Transcript. Each time, the execution time of the parameter logging and the \textcode{add:} method is stored into the \textcode{execTime} collection. The average execution time is computed from the stored results. One reference evaluation is performed without instrumentation. This reference average time is used for comparison with instrumented versions evaluations. For each studied technique, the same code is executed, but with an object-centric instrumentation put on the \textcode{collection} object. However, that time the logging instruction of the \textcode{add:} mesage parameter is removed from the script, and added as an object-centric instrumentation on the \textcode{add:} method of the collection object. We suppose that the execution time of this instruction is constant, so that we can isolate the cost of the instrumentation mechanism and compare it against the cost of having the instrumentation code hard-coded.
+To provide a approximation of the performance overhead due to instrumentation, we compare the execution time of a block of code without instrumentation with the execution time of an instrumented block of code. The method \textcode{evaluateOverheadFor:} from the following script shows how the average execution time is computed. The parameter is an instance of \textcode{Person} that is either not instrumented (\textit{i.e.} to compute the reference execution time used for comparison) or instrumented by one of the studied techniques. The \textcode{\#name:} message is sent a thousand times to the \textcode{Person} instance and each time the execution time is recorded. An average of all the execution times is computed and returned by the method. This average time is used to compare execution time of an instrumented instance against the execution time of a non-instrumented instance.
 
-\begin{listing}[float, label=performance-overhead-method]{smalltalk}{Performance overhead evaluation script}
-|execTimes collection|
-execTimes := OrderedCollection new.
-collection := OrderedCollection new.
-1 to: 1000 do:[:i|
-  execTimes add: [
-    i logCr. "That line is removed for instrumented evaluations"
-    collection add: i] timeToRun].
-execTimes average
-\end{listing}
+\begin{displaycode}{plain}
+evaluateOverheadFor: aPerson
+  |execTimes|
+  execTimes := OrderedCollection new.
+  1 to: 1000 do:[:i|
+    execTimes add: [aPerson name: i] timeToRun].
+  ^execTimes average
+\end{displaycode}
 \section{Structure of the book}
 The second chapter will provide an overview of the evaluation results of object-centric instrumentation techniques available in Pharo. A reader may directly read this chapter if he is already familiar with the Pharo techniques presented in the book. Chapters 3 to 7 describe five solutions for object-centric instrumentation, and provide an evaluation of these solutions. Chapter 8 drafts the premises of an object-centric debugger and concludes the book.
 

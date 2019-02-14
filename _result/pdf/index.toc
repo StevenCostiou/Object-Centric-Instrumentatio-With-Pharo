@@ -2,9 +2,9 @@
 \contentsline {chapter}{Illustrations}{iii}{section*.1}
 \needspace {3\baselineskip }
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Illustration example}{1}{section.1.1}
+\contentsline {section}{\numberline {1.1}Illustration example}{2}{section.1.1}
 \contentsline {section}{\numberline {1.2}Evaluation criteria}{2}{section.1.2}
-\contentsline {section}{\numberline {1.3}Performance overhead evaluation}{2}{section.1.3}
+\contentsline {section}{\numberline {1.3}Performance overhead evaluation}{3}{section.1.3}
 \contentsline {section}{\numberline {1.4}Structure of the book}{3}{section.1.4}
 \needspace {3\baselineskip }
 \contentsline {chapter}{\chapternumberline {2}Summary of the overall evaluations}{5}{chapter.2}

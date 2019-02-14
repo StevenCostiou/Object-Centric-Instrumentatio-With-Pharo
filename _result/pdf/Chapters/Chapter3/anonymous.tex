@@ -93,7 +93,7 @@
 \mainmatter
 
 \chapter{Anonymous subclasses}
-Anonymous classes are nameless classes that are inserted between an object and its original class \cite{foote1989reflective,hinkle1993debugging}. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous behavior is preserved.
+Anonymous classes are nameless classes that are inserted between an object and its original class \cite{foote1989reflective,hinkle1993debugging}. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved.
 \section{Example}
 Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} messages, which takes a \textcode{Trait} as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait, and we compile a method in this trait. That method is an instrumented version of the original \textcode{name} method of the class \textcode{Person}. This new method replaces the original one, until the talent is removed from the object.
 
@@ -106,8 +106,10 @@ Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} m
 			'name: aName
 				self tag: aName.
 				name := aName'.
-	anonClass adoptInstance: person. "migrates the object to its new class"
-  anonClass superclass adoptInstance: "migrates back the object to its original class"
+  "migrates the object to its new class"
+	anonClass adoptInstance: person.
+  "migrates back the object to its original class"
+  anonClass superclass adoptInstance: person.
 	^anonClass
 \end{displaycode}
 \section{Evaluation}

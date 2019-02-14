@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  14 FEB 2019 17:49
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  14 FEB 2019 18:44
  restricted system commands enabled.
 **Chapters/Chapter3/anonymous.tex
 (./Chapters/Chapter3/anonymous.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.105 seconds
+luaotfload | main : initialization completed in 0.120 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (./_support/latex/sbabook/sbabook.cls
 
@@ -2135,26 +2135,26 @@ bibitemlist
 \tf@lof=\write9
 
 \openout9 = anonymous.lof
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 136.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 136.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 138.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 138.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
 _result/pdf/Chapters/Chapter3/anonymous.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 136.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 136.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 138.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 138.
 Package rerunfilecheck Info: File `anonymous.out' has not changed.
 (rerunfilecheck)             Checksum: D904985E02832C597AF0A40E1620A0AB;552.
 )
 (\end occurred when \ifx on line 34 was incomplete)
 
 Here is how much of LuaTeX's memory you used:
- 38948 strings out of 494413
+ 38950 strings out of 494413
  100000,1144653 words of node,token memory allocated
  1373 words of node memory still in use:
    7 hlist, 5 vlist, 1 rule, 10 glue, 1 glyph, 14 attribute, 208 glue_spec, 14 a
 ttribute_list, 2 write, 4 pdf_literal nodes
-   avail lists: 1:2,2:1285,3:241,4:27,5:626,6:27,7:2750,8:354,9:1064,10:10,11:18
-3
+   avail lists: 1:2,2:1285,3:241,4:27,5:667,6:29,7:2755,8:381,9:1133,10:9,11:186
+
  41819 multiletter control sequences out of 65536+600000
  91 fonts using 14074231 bytes
  67i,12n,122p,851b,953s stack positions out of 5000i,500n,10000p,200000b,100000s
@@ -2165,9 +2165,9 @@ nBkBasB.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-tu
 g/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opensa
 ns/OpenSans-Regular.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/publi
 c/opensans/OpenSans-Bold.ttf>
-Output written on anonymous.pdf (8 pages, 104100 bytes).
+Output written on anonymous.pdf (8 pages, 104291 bytes).
 
-PDF statistics: 147 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 131072)
+PDF statistics: 149 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 131072)
  146 words of extra memory for PDF output out of 10000 (max. 100000000)
 

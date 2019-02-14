@@ -14,8 +14,10 @@ Talents are based on traits. Objects can answer to the ==#addTalent:== messages,
 			'name: aName
 				self tag: aName.
 				name := aName'.
-	anonClass adoptInstance: person. "migrates the object to its new class"
-  anonClass superclass adoptInstance: "migrates back the object to its original class"
+  "migrates the object to its new class"
+	anonClass adoptInstance: person.
+  "migrates back the object to its original class"
+  anonClass superclass adoptInstance: person.
 	^anonClass
 ]]]
 

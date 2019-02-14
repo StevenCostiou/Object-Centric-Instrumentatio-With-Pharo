@@ -1,6 +1,16 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
 \begin{thebibliography}{RGN{\etalchar{+}}14}
 
+\bibitem[FJ89]{foote1989reflective}
+Brian Foote and Ralph~E Johnson.
+\newblock Reflective facilities in smalltalk-80.
+\newblock In {\em ACM Sigplan Notices}, volume~24, pages 327--335. ACM, 1989.
+
+\bibitem[HJJ93]{hinkle1993debugging}
+Bob Hinkle, Vicki Jones, and Ralph~E Johnson.
+\newblock Debugging objects.
+\newblock In {\em The Smalltalk Report}. Citeseer, 1993.
+
 \bibitem[RGN{\etalchar{+}}14]{ressia2014talents}
 Jorge Ressia, Tudor G{\^\i}rba, Oscar Nierstrasz, Fabrizio Perin, and Lukas
   Renggli.

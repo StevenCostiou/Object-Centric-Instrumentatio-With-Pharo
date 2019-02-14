@@ -1,8 +1,11 @@
-
-talent := Trait named: 'MyTalent'.
-talent compile: 'add: anObject
-anObject logCr.
-super add: anObject'.
-col := OrderedCollection new.
-col addTalent: talent.
-col add: 'This is an added object.'
+|person anonClass|
+  person := Person new.
+	anonClass := anObject class newAnonymousSubclass.
+	anonClass
+		compile:
+			'name: aName
+				self tag: aName.
+				name := aName'.
+	anonClass adoptInstance: person. "migrates the object to its new class"
+  anonClass superclass adoptInstance: "migrates back the object to its original class"
+	^anonClass

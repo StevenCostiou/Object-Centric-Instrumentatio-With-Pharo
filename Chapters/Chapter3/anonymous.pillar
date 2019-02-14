@@ -1,43 +1,33 @@
 !!Anonymous subclasses
 
-!!!What are Talents
+Anonymous classes are nameless classes that are inserted between an object and its original class ${cite:foote1989reflective,hinkle1993debugging}$. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved.
 
 !!!Example
-!!!!Installing Talents
-aa
-[[[label=install|caption=Installation from Github|language=smalltalk
 
-Metacello new
-  baseline: 'Talents';
-  repository: 'github://tesonep/pharo-talents/src';
-  load.
+Talents are based on traits. Objects can answer to the ==#addTalent:== messages, which takes a ==Trait== as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait, and we compile a method in this trait. That method is an instrumented version of the original ==name== method of the class ==Person==. This new method replaces the original one, until the talent is removed from the object.
+[[[
+|person anonClass|
+  person := Person new.
+	anonClass := anObject class newAnonymousSubclass.
+	anonClass
+		compile:
+			'name: aName
+				self tag: aName.
+				name := aName'.
+	anonClass adoptInstance: person. "migrates the object to its new class"
+  anonClass superclass adoptInstance: "migrates back the object to its original class"
+	^anonClass
 ]]]
-
-!!!!Example
-bb
-[[[label=talent-example|caption=Installation from Github|language=smalltalk|lineNumber=true
-
-talent := Trait named: 'MyTalent'.
-talent compile: 'add: anObject
-anObject logCr.
-super add: anObject'.
-col := OrderedCollection new.
-col addTalent: talent.
-col add: 'This is an added object.'
-]]]
-
 
 
 !!!Evaluation
-cc
 
-@@note this is a note annotation.
+""Manipulated entity: Trait."" Behavioral variations are expressed using traits. It can be Traits defined in the image or anonymous trait instances in which specific behavior is manually compiled by the developer.
 
-@@todo this is a todo annotation
+""Reusability: Yes."" A trait can be added as a Talent to any number of objects.
 
-|!Country |!Capital
-|France | Paris
-|Belgium | Brussels
-|!Country |!Capital
-|France | Paris
-|Belgium | Brussels
+""Flexibility: Partial."" Using anonymous traits forces the user to manually compile code in the method. This is however necessary to achieve a sub-method granularity. Conflicts must be resolved manually when Traits are composed.
+
+""Granularity: Method."" Traits add, remove or alter (through aliasing) the behavior of a method. It can be done at a sub-method level (''e.g.'' inserting a statement in the body of a method), but that requires manual rewriting of the method in the Trait.
+
+""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.

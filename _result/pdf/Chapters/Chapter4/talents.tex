@@ -93,53 +93,33 @@
 \mainmatter
 
 \chapter{Talents}
-Talents \cite{ressia2014talents}\textcode{ }is this.
-\section{What are Talents}\section{Example}\subsection{Installing Talents}
-aa
+Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior \cite{ressia2014talents}. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementationrelies on trait definition.
+\section{Example}
+Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} messages, which takes a \textcode{Trait} as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait, and we compile a method in this trait. That method is an instrumented version of the original \textcode{name} method of the class \textcode{Person}. This new method replaces the original one, until the talent is removed from the object.
 
-\begin{listing}[float, label=install]{smalltalk}{Installation from Github}
-
-Metacello new
-  baseline: 'Talents';
-  repository: 'github://tesonep/pharo-talents/src';
-  load.
-\end{listing}
-\subsection{Example}
-bb
-
-\begin{listing}[float, label=talent-example]{smalltalk}{Installation from Github}
-
-talent := Trait named: 'MyTalent'.
-talent compile: 'add: anObject
-anObject logCr.
-super add: anObject'.
-col := OrderedCollection new.
-col addTalent: talent.
-col add: 'This is an added object.'
-\end{listing}
+\begin{displaycode}{plain}
+|person talent|
+  person := Person new.
+	talent := Trait new.
+	talent
+		compile:
+			'name: aName
+	       self tag: aName.
+	       name := aName'.
+	person addTalent: talent. "adds the talent to the object"
+  person removeTalent: talent. "removes the talent from the object"
+\end{displaycode}
 \section{Evaluation}
-cc
+\textbf{Manipulated entity: Trait.} Behavioral variations are expressed using traits. It can be Traits defined in the image or anonymous trait instances in which specific behavior is manually compiled by the developer.
 
-\begin{note}
-this is a note annotation.
-\end{note}
+\textbf{Reusability: Yes.} A trait can be added as a Talent to any number of objects.
 
-\begin{todo}
-this is a todo annotation
-\end{todo}
+\textbf{Flexibility: Partial.} Using anonymous traits forces the user to manually compile code in the method. This is however necessary to achieve a sub-method granularity. Conflicts must be resolved manually when Traits are composed.
 
-\begin{tabular}{ll}
-\toprule
-\textbf{Country} & \textbf{Capital} \\
-\midrule
-France & Paris \\
-Belgium & Brussels \\
-\textbf{Country} & \textbf{Capital} \\
-\midrule
-France & Paris \\
-Belgium & Brussels \\
-\bottomrule
-\end{tabular}
+\textbf{Granularity: Method.} Traits add, remove or alter (through aliasing) the behavior of a method. It can be done at a sub-method level (\textit{e.g.} inserting a statement in the body of a method), but that requires manual rewriting of the method in the Trait.
+
+\textbf{Integration: Partial.} The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
+
 
 
 

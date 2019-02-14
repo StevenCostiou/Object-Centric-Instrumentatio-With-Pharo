@@ -1,3 +1,13 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{HJJ93}
+
+\bibitem[FJ89]{foote1989reflective}
+Brian Foote and Ralph~E Johnson.
+\newblock Reflective facilities in smalltalk-80.
+\newblock In {\em ACM Sigplan Notices}, volume~24, pages 327--335. ACM, 1989.
+
+\bibitem[HJJ93]{hinkle1993debugging}
+Bob Hinkle, Vicki Jones, and Ralph~E Johnson.
+\newblock Debugging objects.
+\newblock In {\em The Smalltalk Report}. Citeseer, 1993.
 
 \end{thebibliography}

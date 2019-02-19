@@ -1,11 +1,11 @@
 !!Talents
 
-Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior ${cite:ressia2014talents}$. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementation${footnote:https://github.com/tesonep/pharo-talents}$ relies on trait definition.
+Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior ${cite:ressia2014talents}$. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementation relies on trait definition and anonymous subclasses.
 
 
 !!!Example
 
-Talents are based on traits. Objects can answer to the ==#addTalent:== messages, which takes a ==Trait== as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait, and we compile a method in this trait. That method is an instrumented version of the original ==name== method of the class ==Person==. This new method replaces the original one, until the talent is removed from the object.
+Talents are based on traits. Objects can answer to the ==#addTalent:== messages (line 9), which takes a ==Trait== as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait (line 3), and we compile a method in this trait (line 4-8). That method is an instrumented version of the original ==name== method of the class ==Person==. This new method replaces the original one, until the talent is removed from the object (line 10). Talents now relies on anonymous subclasses, to which behavior is flattened before objects are migrated to the anonymous class.
 [[[
 |person talent|
   person := Person new.
@@ -31,3 +31,11 @@ Talents are based on traits. Objects can answer to the ==#addTalent:== messages,
 ""Granularity: Method."" Traits add, remove or alter (through aliasing) the behavior of a method. It can be done at a sub-method level (''e.g.'' inserting a statement in the body of a method), but that requires manual rewriting of the method in the Trait.
 
 ""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
+
+""==Self== problem."" Solved by design: ==self== always references the original object.
+
+""==Super== problem."" Solved by flattening all methods that should be found in the super class into the anonymous subclass, and by replacing message sends to ==super== by message sends to ==self==.
+
+!!!Other documentation
+The new implementation of Talents is available and documented on Github:
+- https://github.com/tesonep/pharo-talents

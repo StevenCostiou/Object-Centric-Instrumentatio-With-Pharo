@@ -10,4 +10,3 @@
 	anonClass adoptInstance: person.
   "migrates back the object to its original class"
   anonClass superclass adoptInstance: person.
-	^anonClass

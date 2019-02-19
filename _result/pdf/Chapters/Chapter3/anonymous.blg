@@ -4,45 +4,45 @@ The top-level auxiliary file: Chapters/Chapter3/anonymous.aux
 The style file: alpha.bst
 Database file #1: book.bib
 Warning--can't use both volume and number fields in foote1989reflective
-You've used 2 entries,
+You've used 3 entries,
             2543 wiz_defined-function locations,
-            573 strings with 4725 characters,
-and the built_in function-call counts, 995 in all, are:
-= -- 102
-> -- 44
-< -- 2
-+ -- 15
-- -- 15
-* -- 67
-:= -- 159
-add.period$ -- 8
-call.type$ -- 2
-change.case$ -- 13
-chr.to.int$ -- 2
-cite$ -- 3
-duplicate$ -- 43
-empty$ -- 76
-format.name$ -- 17
-if$ -- 215
+            580 strings with 4875 characters,
+and the built_in function-call counts, 1328 in all, are:
+= -- 138
+> -- 52
+< -- 3
++ -- 17
+- -- 17
+* -- 89
+:= -- 213
+add.period$ -- 11
+call.type$ -- 3
+change.case$ -- 18
+chr.to.int$ -- 3
+cite$ -- 4
+duplicate$ -- 58
+empty$ -- 103
+format.name$ -- 21
+if$ -- 282
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 2
-newline$ -- 13
-num.names$ -- 6
-pop$ -- 16
+missing$ -- 3
+newline$ -- 18
+num.names$ -- 9
+pop$ -- 19
 preamble$ -- 1
-purify$ -- 15
+purify$ -- 21
 quote$ -- 0
-skip$ -- 36
+skip$ -- 47
 stack$ -- 0
-substring$ -- 46
-swap$ -- 15
-text.length$ -- 2
-text.prefix$ -- 0
+substring$ -- 72
+swap$ -- 16
+text.length$ -- 3
+text.prefix$ -- 1
 top$ -- 0
-type$ -- 16
+type$ -- 24
 warning$ -- 1
-while$ -- 9
-width$ -- 3
-write$ -- 30
+while$ -- 13
+width$ -- 4
+write$ -- 43
 (There was 1 warning)

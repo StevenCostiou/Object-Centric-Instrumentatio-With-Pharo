@@ -158,9 +158,9 @@ The second chapter will provide an overview of the evaluation results of object-
 If you already know Pharo and (some of) the presented technique, this chapter is a global summary with spoilers.
 
 \chapter{Anonymous subclasses}
-Anonymous classes are nameless classes that are inserted between an object and its original class \cite{foote1989reflective,hinkle1993debugging}. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved.
+Anonymous classes are nameless classes that are inserted between an object and its original class \cite{foote1989reflective,hinkle1993debugging}. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved. It is one of the fastest implementation for object-centric instrumentation \cite{ducasse1999evaluating}.
 \section{Example}
-Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} messages, which takes a \textcode{Trait} as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait, and we compile a method in this trait. That method is an instrumented version of the original \textcode{name} method of the class \textcode{Person}. This new method replaces the original one, until the talent is removed from the object.
+Anonymous subclasses are derived from the original class of the object (line 3). Methods must be manually (re)written with instrumentation and compiled in the new class (line 4-8). Then the object has to be migrated to its new class (line 10). To rollback the instrumentation, the object must be manually migrated back to its original class (line 12). The migration is not \textit{safe} if more than one process is using the instrumented object.
 
 \begin{displaycode}{plain}
 |person anonClass|
@@ -175,23 +175,32 @@ Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} m
 	anonClass adoptInstance: person.
   "migrates back the object to its original class"
   anonClass superclass adoptInstance: person.
-	^anonClass
 \end{displaycode}
 \section{Evaluation}
-\textbf{Manipulated entity: Trait.} Behavioral variations are expressed using traits. It can be Traits defined in the image or anonymous trait instances in which specific behavior is manually compiled by the developer.
+\textbf{Manipulated entity: Classes.} Behavioral variations are expressed in standard methods, compiled in anonymous classes.
 
-\textbf{Reusability: Yes.} A trait can be added as a Talent to any number of objects.
+\textbf{Reusability: Partial.} As an anonymous subclass is derived from the original class of an object, only instances of that same class can be migrated to the anonymous subclass. To apply the same instrumentation to an instance of another class, a new anonymous subclass must be created and the instrumented behavior must be recompiled in that subclass.
 
-\textbf{Flexibility: Partial.} Using anonymous traits forces the user to manually compile code in the method. This is however necessary to achieve a sub-method granularity. Conflicts must be resolved manually when Traits are composed.
+\textbf{Flexibility: None.} Instrumented methods must always be copied down to anonymous subclasses, and instrumentation must be inserted in the duplicated code. Without any tool built on top, that instrumentation is fully manual. Anonymous subclasses cannot be composed.
 
-\textbf{Granularity: Method.} Traits add, remove or alter (through aliasing) the behavior of a method. It can be done at a sub-method level (\textit{e.g.} inserting a statement in the body of a method), but that requires manual rewriting of the method in the Trait.
+\textbf{Granularity: Method.} Instrumentation is implemented by recompiling modified copies of methods in anonymous subclasses. Sub-method level is achieved through manual rewriting of the method.
 
-\textbf{Integration: Partial.} The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
+\textbf{Integration: Partial.} The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
 
+\textbf{\textcode{Self} problem.} Solved by design: \textcode{self} always references the original object.
+
+\textbf{\textcode{Super} problem.} Not solved. There are no means to express how to resolve the lookup when a message is sent to \textcode{super} from a method copied down in an anonymous subclass.
+\section{Other documentation}
+The Pharo Mooc provides materials on object-centric instrumentation based on object class migration and its flavours:
+
+\begin{itemize}
+\item http://rmod-pharo-mooc.lille.inria.fr/MOOC/Slides/Week7/C019-W7S04-OtherReflective.pdf
+\item http://rmod-pharo-mooc.lille.inria.fr/MOOC/WebPortal/co/content\_78.html
+\end{itemize}
 \chapter{Talents}
-Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior \cite{ressia2014talents}. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementationrelies on trait definition.
+Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior \cite{ressia2014talents}. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementation relies on trait definition and anonymous subclasses.
 \section{Example}
-Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} messages, which takes a \textcode{Trait} as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait, and we compile a method in this trait. That method is an instrumented version of the original \textcode{name} method of the class \textcode{Person}. This new method replaces the original one, until the talent is removed from the object.
+Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} messages (line 9), which takes a \textcode{Trait} as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait (line 3), and we compile a method in this trait (line 4-8). That method is an instrumented version of the original \textcode{name} method of the class \textcode{Person}. This new method replaces the original one, until the talent is removed from the object (line 10). Talents now relies on anonymous subclasses, to which behavior is flattened before objects are migrated to the anonymous class.
 
 \begin{displaycode}{plain}
 |person talent|
@@ -216,6 +225,15 @@ Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} m
 
 \textbf{Integration: Partial.} The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
 
+\textbf{\textcode{Self} problem.} Solved by design: \textcode{self} always references the original object.
+
+\textbf{\textcode{Super} problem.} Solved by flattening all methods that should be found in the super class into the anonymous subclass, and by replacing message sends to \textcode{super} by message sends to \textcode{self}.
+\section{Other documentation}
+The new implementation of Talents is available and documented on Github:
+
+\begin{itemize}
+\item https://github.com/tesonep/pharo-talents
+\end{itemize}
 \chapter{Proxies}\section{What are Talents}\section{Example}\subsection{Installing Talents}
 aa
 

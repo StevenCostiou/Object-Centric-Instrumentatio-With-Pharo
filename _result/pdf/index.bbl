@@ -1,6 +1,11 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
 \begin{thebibliography}{RGN{\etalchar{+}}14}
 
+\bibitem[Duc99]{ducasse1999evaluating}
+St{\'e}phane Ducasse.
+\newblock Evaluating message passing control techniques in smalltalk.
+\newblock {\em Journal of Object Oriented Programming}, 12:39--50, 1999.
+
 \bibitem[FJ89]{foote1989reflective}
 Brian Foote and Ralph~E Johnson.
 \newblock Reflective facilities in smalltalk-80.

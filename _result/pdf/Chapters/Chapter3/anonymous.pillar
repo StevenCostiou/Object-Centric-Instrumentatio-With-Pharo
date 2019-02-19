@@ -1,10 +1,10 @@
 !!Anonymous subclasses
 
-Anonymous classes are nameless classes that are inserted between an object and its original class ${cite:foote1989reflective,hinkle1993debugging}$. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved.
+Anonymous classes are nameless classes that are inserted between an object and its original class ${cite:foote1989reflective,hinkle1993debugging}$. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved. It is one of the fastest implementation for object-centric instrumentation ${cite:ducasse1999evaluating}$.
 
 !!!Example
 
-Talents are based on traits. Objects can answer to the ==#addTalent:== messages, which takes a ==Trait== as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait, and we compile a method in this trait. That method is an instrumented version of the original ==name== method of the class ==Person==. This new method replaces the original one, until the talent is removed from the object.
+Anonymous subclasses are derived from the original class of the object (line 3). Methods must be manually (re)written with instrumentation and compiled in the new class (line 4-8). Then the object has to be migrated to its new class (line 10). To rollback the instrumentation, the object must be manually migrated back to its original class (line 12). The migration is not ''safe'' if more than one process is using the instrumented object.
 [[[
 |person anonClass|
   person := Person new.
@@ -18,18 +18,27 @@ Talents are based on traits. Objects can answer to the ==#addTalent:== messages,
 	anonClass adoptInstance: person.
   "migrates back the object to its original class"
   anonClass superclass adoptInstance: person.
-	^anonClass
 ]]]
 
 
 !!!Evaluation
 
-""Manipulated entity: Trait."" Behavioral variations are expressed using traits. It can be Traits defined in the image or anonymous trait instances in which specific behavior is manually compiled by the developer.
+""Manipulated entity: Classes."" Behavioral variations are expressed in standard methods, compiled in anonymous classes.
 
-""Reusability: Yes."" A trait can be added as a Talent to any number of objects.
+""Reusability: Partial."" As an anonymous subclass is derived from the original class of an object, only instances of that same class can be migrated to the anonymous subclass. To apply the same instrumentation to an instance of another class, a new anonymous subclass must be created and the instrumented behavior must be recompiled in that subclass.
 
-""Flexibility: Partial."" Using anonymous traits forces the user to manually compile code in the method. This is however necessary to achieve a sub-method granularity. Conflicts must be resolved manually when Traits are composed.
+""Flexibility: None."" Instrumented methods must always be copied down to anonymous subclasses, and instrumentation must be inserted in the duplicated code. Without any tool built on top, that instrumentation is fully manual. Anonymous subclasses cannot be composed.
 
-""Granularity: Method."" Traits add, remove or alter (through aliasing) the behavior of a method. It can be done at a sub-method level (''e.g.'' inserting a statement in the body of a method), but that requires manual rewriting of the method in the Trait.
+""Granularity: Method."" Instrumentation is implemented by recompiling modified copies of methods in anonymous subclasses. Sub-method level is achieved through manual rewriting of the method.
 
-""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
+""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
+
+""==Self== problem."" Solved by design: ==self== always references the original object.
+
+""==Super== problem."" Not solved. There are no means to express how to resolve the lookup when a message is sent to ==super== from a method copied down in an anonymous subclass.
+
+!!!Other documentation
+The Pharo Mooc provides materials on object-centric instrumentation based on object class migration and its flavours:
+
+- http://rmod-pharo-mooc.lille.inria.fr/MOOC/Slides/Week7/C019-W7S04-OtherReflective.pdf
+- http://rmod-pharo-mooc.lille.inria.fr/MOOC/WebPortal/co/content_78.html

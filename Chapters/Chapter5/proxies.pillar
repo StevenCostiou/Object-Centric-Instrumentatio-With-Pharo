@@ -1,43 +1,32 @@
-!!Proxies
-
-!!!What are Talents
+!!Ghost
+${cite:Mart14z}$
 
 !!!Example
-!!!!Installing Talents
-aa
-[[[label=install|caption=Installation from Github|language=smalltalk
-
-Metacello new
-  baseline: 'Talents';
-  repository: 'github://tesonep/pharo-talents/src';
-  load.
-]]]
-
-!!!!Example
-bb
-[[[label=talent-example|caption=Installation from Github|language=smalltalk|lineNumber=true
-
-talent := Trait named: 'MyTalent'.
-talent compile: 'add: anObject
-anObject logCr.
-super add: anObject'.
-col := OrderedCollection new.
-col addTalent: talent.
-col add: 'This is an added object.'
-]]]
 
 
 
 !!!Evaluation
-cc
 
-@@note this is a note annotation.
+""Manipulated entity: Proxies.""
 
-@@todo this is a todo annotation
+""Reusability: Complete.""
 
-|!Country |!Capital
-|France | Paris
-|Belgium | Brussels
-|!Country |!Capital
-|France | Paris
-|Belgium | Brussels
+""Flexibility: Partial."" Because the user has to define a proxy model which specifies which messages are handled and/or which are not. However that allows developers to fully and transparently integrate the instrumented object into the environment.
+
+""Granularity: Method."" A proxy intercepts messages sends to the object it proxifies.
+
+""Integration: Full."" because meat-messages can bde efined
+
+""==Self== problem."" ?
+
+""==Super== problem."" ?
+
+!!!Other documentation
+Implementations and documentation based on the original Ghost paper ${cite:Mart14z}$:
+
+- http://esug.org/data/ESUG2011/IWST/PRESENTATIONS/23.Mariano_Peck-Ghost-ESUG2011.pdf
+- https://gitlab.inria.fr/RMOD/Ghost
+
+Another implementation of Ghost:
+- https://github.com/pharo-ide/Ghost
+- http://dionisiydk.blogspot.com/2016/04/halt-next-object-call.html

@@ -32,9 +32,9 @@ Talents are based on traits. Objects can answer to the ==#addTalent:== messages 
 
 ""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
 
-""==Self== problem."" Solved by design: ==self== always references the original object.
+""==Self== problem: Solved."" By design, ==self== always references the original object.
 
-""==Super== problem."" Solved by flattening all methods that should be found in the super class into the anonymous subclass, and by replacing message sends to ==super== by message sends to ==self==.
+""==Super== problem: Solved."" By flattening all methods that should be found in the super class into the anonymous subclass, and by replacing message sends to ==super== by message sends to ==self==.
 
 !!!Other documentation
 The new implementation of Talents is available and documented on Github:

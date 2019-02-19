@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  19 FEB 2019 15:43
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  19 FEB 2019 15:58
  restricted system commands enabled.
 **Chapters/Chapter3/anonymous.tex
 (./Chapters/Chapter3/anonymous.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.133 seconds
+luaotfload | main : initialization completed in 0.122 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (./_support/latex/sbabook/sbabook.cls
 

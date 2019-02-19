@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  19 FEB 2019 15:44
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  19 FEB 2019 15:59
  restricted system commands enabled.
 **index.tex
 
@@ -36,7 +36,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.134 seconds
+luaotfload | main : initialization completed in 0.129 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
@@ -2372,7 +2372,7 @@ ug/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opens
 ans/OpenSans-Regular.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/publ
 ic/opensans/OpenSans-Bold.ttf></usr/local/texlive/2018/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmr7.pfb>
-Output written on index.pdf (26 pages, 182547 bytes).
+Output written on index.pdf (26 pages, 182609 bytes).
 
 PDF statistics: 513 PDF objects out of 1000 (max. 8388607)
  179 named destinations out of 1000 (max. 131072)

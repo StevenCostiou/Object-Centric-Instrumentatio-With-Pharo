@@ -1,6 +1,6 @@
 !!Talents
 
-Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior ${cite:ressia2014talents}$. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementation relies on trait definition and anonymous subclasses.
+Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior ${cite:ressia2014talents}$. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementation relies on trait definition and anonymous subclasses. Talents can be considered as object-centric, stateful-traits.
 
 
 !!!Example

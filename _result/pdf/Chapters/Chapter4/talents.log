@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  19 FEB 2019 15:43
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  19 FEB 2019 15:59
  restricted system commands enabled.
 **Chapters/Chapter4/talents.tex
 (./Chapters/Chapter4/talents.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.127 seconds
+luaotfload | main : initialization completed in 0.120 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (./_support/latex/sbabook/sbabook.cls
 
@@ -2156,8 +2156,8 @@ Here is how much of LuaTeX's memory you used:
  1373 words of node memory still in use:
    7 hlist, 5 vlist, 1 rule, 10 glue, 1 glyph, 14 attribute, 208 glue_spec, 14 a
 ttribute_list, 2 write, 4 pdf_literal nodes
-   avail lists: 1:2,2:1285,3:241,4:27,5:657,6:25,7:2752,8:362,9:1091,10:15,11:18
-6
+   avail lists: 1:2,2:1285,3:241,4:27,5:657,6:25,7:2752,8:362,9:1092,10:15,11:19
+1
  41817 multiletter control sequences out of 65536+600000
  92 fonts using 14312151 bytes
  67i,12n,122p,849b,953s stack positions out of 5000i,500n,10000p,200000b,100000s
@@ -2170,7 +2170,7 @@ ug/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opens
 ans/OpenSans-Regular.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/publ
 ic/opensans/OpenSans-Bold.ttf></usr/local/texlive/2018/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmr7.pfb>
-Output written on talents.pdf (8 pages, 113915 bytes).
+Output written on talents.pdf (8 pages, 113977 bytes).
 
 PDF statistics: 160 PDF objects out of 1000 (max. 8388607)
  25 named destinations out of 1000 (max. 131072)

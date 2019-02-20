@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  19 FEB 2019 15:59
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  20 FEB 2019 14:01
  restricted system commands enabled.
 **index.tex
 
@@ -36,7 +36,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.129 seconds
+luaotfload | main : initialization completed in 0.119 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
@@ -1757,12 +1757,6 @@ LaTeX Warning: Label `install' multiply defined.
 
 LaTeX Warning: Label `talent-example' multiply defined.
 
-
-LaTeX Warning: Label `install' multiply defined.
-
-
-LaTeX Warning: Label `talent-example' multiply defined.
-
 )
 \openout1 = index.aux
 
@@ -1951,7 +1945,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 64.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 64.
-<_support/latex/sbabook/CreativeCommons-BY-SA.pdf, id=180, 120.45pt x 42.1575pt>
+<_support/latex/sbabook/CreativeCommons-BY-SA.pdf, id=172, 120.45pt x 42.1575pt>
 
 File: _support/latex/sbabook/CreativeCommons-BY-SA.pdf Graphic file (type pdf)
 <use _support/latex/sbabook/CreativeCommons-BY-SA.pdf>
@@ -2242,21 +2236,7 @@ _result/pdf/index.listing) [9
 . 
 . OpenSans scale = 0.8485397528283549.
 .................................................
-LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
-(Font)              scaled to size 10.1825pt on input line 237.
-LaTeX Font Info:    Font shape `TU/OpenSans(0)/bx/n' will be
-(Font)              scaled to size 9.98218pt on input line 237.
-
-\openout5 = index.listing
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
- line 246.
-
-(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/index.listing)
-\openout5 = index.listing
-
-(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/index.listing) [11
+ [11
 
 ] [12]
 .................................................
@@ -2269,8 +2249,14 @@ _result/pdf/index.listing) [11
 . 
 . OpenSans scale = 0.8485397528283549.
 .................................................
+LaTeX Font Info:    Font shape `TU/OpenSans(0)/m/n' will be
+(Font)              scaled to size 10.1825pt on input line 273.
+LaTeX Font Info:    Font shape `TU/OpenSans(0)/bx/n' will be
+(Font)              scaled to size 9.98218pt on input line 273.
 
 \openout5 = index.listing
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
+ line 282.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
 _result/pdf/index.listing)
@@ -2336,15 +2322,15 @@ bibitemlist
 \tf@lof=\write9
 
 \openout9 = index.lof
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 435.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 435.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 423.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 423.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
 _result/pdf/index.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 435.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 435.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 423.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 423.
 Package rerunfilecheck Info: File `index.out' has not changed.
-(rerunfilecheck)             Checksum: 0AB1EA91DCE365FC6C38A0B1E936D979;4601.
+(rerunfilecheck)             Checksum: 221DAE9E6AC6F4419EAE2998BA1867C9;4362.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -2353,14 +2339,14 @@ LaTeX Warning: There were multiply-defined labels.
 (\end occurred when \ifx on line 34 was incomplete)
 
 Here is how much of LuaTeX's memory you used:
- 39432 strings out of 494413
+ 39391 strings out of 494413
  100000,1144653 words of node,token memory allocated
  1455 words of node memory still in use:
    7 hlist, 5 vlist, 1 rule, 10 glue, 8 glyph, 21 attribute, 209 glue_spec, 21 a
 ttribute_list, 2 write, 4 pdf_literal nodes
-   avail lists: 1:2,2:1553,3:296,4:36,5:658,6:67,7:3815,8:371,9:1116,10:15,11:28
+   avail lists: 1:2,2:1553,3:296,4:36,5:660,6:67,7:3765,8:371,9:1116,10:15,11:28
 2
- 41946 multiletter control sequences out of 65536+600000
+ 41944 multiletter control sequences out of 65536+600000
  95 fonts using 14751991 bytes
  67i,12n,122p,1302b,1082s stack positions out of 5000i,500n,10000p,200000b,100000s
 </usr/local/texlive/2018/texmf-dist/fonts/opentype/public/fira/FiraMono-Bold.otf
@@ -2372,9 +2358,9 @@ ug/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opens
 ans/OpenSans-Regular.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/publ
 ic/opensans/OpenSans-Bold.ttf></usr/local/texlive/2018/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmr7.pfb>
-Output written on index.pdf (26 pages, 182609 bytes).
+Output written on index.pdf (26 pages, 183194 bytes).
 
-PDF statistics: 513 PDF objects out of 1000 (max. 8388607)
- 179 named destinations out of 1000 (max. 131072)
- 410 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 494 PDF objects out of 1000 (max. 8388607)
+ 162 named destinations out of 1000 (max. 131072)
+ 394 words of extra memory for PDF output out of 10000 (max. 100000000)
 

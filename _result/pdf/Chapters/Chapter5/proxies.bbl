@@ -1,3 +1,15 @@
-\begin{thebibliography}{}
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{PBF{\etalchar{+}}15}
+
+\bibitem[ABW98]{alpert1998design}
+Sherman~R Alpert, Kyle Brown, and Bobby Woolf.
+\newblock {\em The design patterns Smalltalk companion}.
+\newblock Addison-Wesley Longman Publishing Co., Inc., 1998.
+
+\bibitem[PBF{\etalchar{+}}15]{Mart14z}
+Mariano~Martinez Peck, Noury Bouraqadi, Luc Fabresse, Marcus Denker, and
+  Camille Teruel.
+\newblock Ghost: A uniform and general-purpose proxy implementation.
+\newblock {\em Journal of Object Technology}, 98:339--359, 2015.
 
 \end{thebibliography}

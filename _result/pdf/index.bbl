@@ -1,6 +1,11 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
 \begin{thebibliography}{RGN{\etalchar{+}}14}
 
+\bibitem[ABW98]{alpert1998design}
+Sherman~R Alpert, Kyle Brown, and Bobby Woolf.
+\newblock {\em The design patterns Smalltalk companion}.
+\newblock Addison-Wesley Longman Publishing Co., Inc., 1998.
+
 \bibitem[Duc99]{ducasse1999evaluating}
 St{\'e}phane Ducasse.
 \newblock Evaluating message passing control techniques in smalltalk.
@@ -15,6 +20,12 @@ Brian Foote and Ralph~E Johnson.
 Bob Hinkle, Vicki Jones, and Ralph~E Johnson.
 \newblock Debugging objects.
 \newblock In {\em The Smalltalk Report}. Citeseer, 1993.
+
+\bibitem[PBF{\etalchar{+}}15]{Mart14z}
+Mariano~Martinez Peck, Noury Bouraqadi, Luc Fabresse, Marcus Denker, and
+  Camille Teruel.
+\newblock Ghost: A uniform and general-purpose proxy implementation.
+\newblock {\em Journal of Object Technology}, 98:339--359, 2015.
 
 \bibitem[RGN{\etalchar{+}}14]{ressia2014talents}
 Jorge Ressia, Tudor G{\^\i}rba, Oscar Nierstrasz, Fabrizio Perin, and Lukas

@@ -122,9 +122,9 @@ Anonymous subclasses are derived from the original class of the object (line 3).
 
 \textbf{Integration: Partial.} The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
 
-\textbf{\textcode{Self} problem.} Solved by design: \textcode{self} always references the original object.
+\textbf{\textcode{Self} problem: Solved.} By design, \textcode{self} always references the original object.
 
-\textbf{\textcode{Super} problem.} Not solved. There are no means to express how to resolve the lookup when a message is sent to \textcode{super} from a method copied down in an anonymous subclass.
+\textbf{\textcode{Super} problem: Not solved.} There are no means to express how to resolve the lookup when a message is sent to \textcode{super} from a method copied down in an anonymous subclass.
 \section{Other documentation}
 The Pharo Mooc provides materials on object-centric instrumentation based on object class migration and its flavours:
 

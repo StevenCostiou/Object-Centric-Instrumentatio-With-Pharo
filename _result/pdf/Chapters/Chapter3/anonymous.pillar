@@ -33,9 +33,9 @@ Anonymous subclasses are derived from the original class of the object (line 3).
 
 ""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
 
-""==Self== problem."" Solved by design: ==self== always references the original object.
+""==Self== problem: Solved."" By design, ==self== always references the original object.
 
-""==Super== problem."" Not solved. There are no means to express how to resolve the lookup when a message is sent to ==super== from a method copied down in an anonymous subclass.
+""==Super== problem: Not solved."" There are no means to express how to resolve the lookup when a message is sent to ==super== from a method copied down in an anonymous subclass.
 
 !!!Other documentation
 The Pharo Mooc provides materials on object-centric instrumentation based on object class migration and its flavours:

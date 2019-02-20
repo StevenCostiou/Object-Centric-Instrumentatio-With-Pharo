@@ -187,9 +187,9 @@ Anonymous subclasses are derived from the original class of the object (line 3).
 
 \textbf{Integration: Partial.} The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
 
-\textbf{\textcode{Self} problem.} Solved by design: \textcode{self} always references the original object.
+\textbf{\textcode{Self} problem: Solved.} By design, \textcode{self} always references the original object.
 
-\textbf{\textcode{Super} problem.} Not solved. There are no means to express how to resolve the lookup when a message is sent to \textcode{super} from a method copied down in an anonymous subclass.
+\textbf{\textcode{Super} problem: Not solved.} There are no means to express how to resolve the lookup when a message is sent to \textcode{super} from a method copied down in an anonymous subclass.
 \section{Other documentation}
 The Pharo Mooc provides materials on object-centric instrumentation based on object class migration and its flavours:
 
@@ -198,7 +198,7 @@ The Pharo Mooc provides materials on object-centric instrumentation based on obj
 \item http://rmod-pharo-mooc.lille.inria.fr/MOOC/WebPortal/co/content\_78.html
 \end{itemize}
 \chapter{Talents}
-Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior \cite{ressia2014talents}. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementation relies on trait definition and anonymous subclasses. Talents can be considered as object-centric stateful-traits.
+Talents are originally behavioral units, that can be attached to an object to add, remove or alter behavior \cite{ressia2014talents}. Only the object to which a talent is attached is affected by behavioral variations. The latest talent implementation relies on trait definition and anonymous subclasses. Talents can be considered as object-centric, stateful-traits.
 \section{Example}
 Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} messages (line 9), which takes a \textcode{Trait} as parameter. All behavior defined in the trait is flattened in the object. In the following illustration, we instantiate an anonymous trait (line 3), and we compile a method in this trait (line 4-8). That method is an instrumented version of the original \textcode{name} method of the class \textcode{Person}. This new method replaces the original one, until the talent is removed from the object (line 10). Talents now relies on anonymous subclasses, to which behavior is flattened before objects are migrated to the anonymous class.
 
@@ -225,61 +225,49 @@ Talents are based on traits. Objects can answer to the \textcode{\#addTalent:} m
 
 \textbf{Integration: Partial.} The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
 
-\textbf{\textcode{Self} problem.} Solved by design: \textcode{self} always references the original object.
+\textbf{\textcode{Self} problem: Solved.} By design, \textcode{self} always references the original object.
 
-\textbf{\textcode{Super} problem.} Solved by flattening all methods that should be found in the super class into the anonymous subclass, and by replacing message sends to \textcode{super} by message sends to \textcode{self}.
+\textbf{\textcode{Super} problem: Solved.} By flattening all methods that should be found in the super class into the anonymous subclass, and by replacing message sends to \textcode{super} by message sends to \textcode{self}.
 \section{Other documentation}
 The new implementation of Talents is available and documented on Github:
 
 \begin{itemize}
 \item https://github.com/tesonep/pharo-talents
 \end{itemize}
-\chapter{Proxies}\section{What are Talents}\section{Example}\subsection{Installing Talents}
-aa
-
-\begin{listing}[float, label=install]{smalltalk}{Installation from Github}
-
-Metacello new
-  baseline: 'Talents';
-  repository: 'github://tesonep/pharo-talents/src';
-  load.
-\end{listing}
-\subsection{Example}
-bb
-
-\begin{listing}[float, label=talent-example]{smalltalk}{Installation from Github}
-
-talent := Trait named: 'MyTalent'.
-talent compile: 'add: anObject
-anObject logCr.
-super add: anObject'.
-col := OrderedCollection new.
-col addTalent: talent.
-col add: 'This is an added object.'
-\end{listing}
+\chapter{Ghost}
+Ghost is a general and uniform proxy implementation\cite{Mart14z}. A proxy replaces an object to control access to that object \cite{alpert1998design}. Object-centric instrumentation by means of proxies consist of swapping an object (and all its references) by a proxy object (and references to that proxy object). A proxy object is instance of a proxy class, in which access control is defined. Access control is generally implemented through a single interface, which is called each time a message is intercepted by the proxy. Control behavior then decides what to do with the received message.
+\section{Example}
+In this example, we use the original implementation of Ghost \cite{Mart14z}.
 \section{Evaluation}
-cc
+\textbf{Manipulated entity: Classes.} Proxies are defined and/or configured in classes which inherits from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply a proxy to objects.
 
-\begin{note}
-this is a note annotation.
-\end{note}
+\textbf{Reusability: Complete.} The same proxy model can be reused to instrument any kind of object with the same instrumentation. Although Ghost proxies are not meant to be composed, it should be possible to \textit{proxify} a proxy, if a proper model is implemented to instrument a proxy object.
 
-\begin{todo}
-this is a todo annotation
-\end{todo}
+\textbf{Flexibility: Partial.} Because the user has to define a proxy model which specifies which messages are handled and/or which are not. However that allows developers to fully and transparently integrate the instrumented object into the environment.
 
-\begin{tabular}{ll}
-\toprule
-\textbf{Country} & \textbf{Capital} \\
-\midrule
-France & Paris \\
-Belgium & Brussels \\
-\textbf{Country} & \textbf{Capital} \\
-\midrule
-France & Paris \\
-Belgium & Brussels \\
-\bottomrule
-\end{tabular}
+\textbf{Granularity: Method.} A proxy intercepts messages sends to the object it \textit{proxifies}. It can execute instrumentation behavior before, after or instead the intercepted message. Sub-method instrumentation cannot be achieved by means of proxies.
+
+\textbf{Integration: Full.} because meat-messages can bde efined
+
+\textbf{\textcode{Self} problem: Implementation dependent.}
+
+\textbf{\textcode{Super} problem: Implementation dependent.} ?
+\section{Other documentation}
+Implementations and documentation based on the original Ghost paper \cite{Mart14z}:
+
+\begin{itemize}
+\item http://esug.org/data/ESUG2011/IWST/PRESENTATIONS/23.Mariano\_Peck-Ghost-ESUG2011.pdf
+\item https://rmod.inria.fr/archives/papers/Mart14z-Ghost-Final.pdf
+\item https://gitlab.inria.fr/RMOD/Ghost
+\item https://github.com/guillep/avatar
+\end{itemize}
+
+Another implementation of Ghost:
+
+\begin{itemize}
+\item https://github.com/pharo-ide/Ghost
+\item http://dionisiydk.blogspot.com/2016/04/halt-next-object-call.html
+\end{itemize}
 \chapter{Reflectivity}
 Talents \cite{ressia2014talents}is this.
 \section{What are Talents}\section{Example}\subsection{Installing Talents}

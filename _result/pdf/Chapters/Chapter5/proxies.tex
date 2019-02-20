@@ -92,52 +92,40 @@
 
 \mainmatter
 
-\chapter{Proxies}\section{What are Talents}\section{Example}\subsection{Installing Talents}
-aa
-
-\begin{listing}[float, label=install]{smalltalk}{Installation from Github}
-
-Metacello new
-  baseline: 'Talents';
-  repository: 'github://tesonep/pharo-talents/src';
-  load.
-\end{listing}
-\subsection{Example}
-bb
-
-\begin{listing}[float, label=talent-example]{smalltalk}{Installation from Github}
-
-talent := Trait named: 'MyTalent'.
-talent compile: 'add: anObject
-anObject logCr.
-super add: anObject'.
-col := OrderedCollection new.
-col addTalent: talent.
-col add: 'This is an added object.'
-\end{listing}
+\chapter{Ghost}
+Ghost is a general and uniform proxy implementation\cite{Mart14z}. A proxy replaces an object to control access to that object \cite{alpert1998design}. Object-centric instrumentation by means of proxies consist of swapping an object (and all its references) by a proxy object (and references to that proxy object). A proxy object is instance of a proxy class, in which access control is defined. Access control is generally implemented through a single interface, which is called each time a message is intercepted by the proxy. Control behavior then decides what to do with the received message.
+\section{Example}
+In this example, we use the original implementation of Ghost \cite{Mart14z}.
 \section{Evaluation}
-cc
+\textbf{Manipulated entity: Classes.} Proxies are defined and/or configured in classes which inherits from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply a proxy to objects.
 
-\begin{note}
-this is a note annotation.
-\end{note}
+\textbf{Reusability: Complete.} The same proxy model can be reused to instrument any kind of object with the same instrumentation. Although Ghost proxies are not meant to be composed, it should be possible to \textit{proxify} a proxy, if a proper model is implemented to instrument a proxy object.
 
-\begin{todo}
-this is a todo annotation
-\end{todo}
+\textbf{Flexibility: Partial.} Because the user has to define a proxy model which specifies which messages are handled and/or which are not. However that allows developers to fully and transparently integrate the instrumented object into the environment.
 
-\begin{tabular}{ll}
-\toprule
-\textbf{Country} & \textbf{Capital} \\
-\midrule
-France & Paris \\
-Belgium & Brussels \\
-\textbf{Country} & \textbf{Capital} \\
-\midrule
-France & Paris \\
-Belgium & Brussels \\
-\bottomrule
-\end{tabular}
+\textbf{Granularity: Method.} A proxy intercepts messages sends to the object it \textit{proxifies}. It can execute instrumentation behavior before, after or instead the intercepted message. Sub-method instrumentation cannot be achieved by means of proxies.
+
+\textbf{Integration: Full.} because meat-messages can bde efined
+
+\textbf{\textcode{Self} problem: Implementation dependent.}
+
+\textbf{\textcode{Super} problem: Implementation dependent.} ?
+\section{Other documentation}
+Implementations and documentation based on the original Ghost paper \cite{Mart14z}:
+
+\begin{itemize}
+\item http://esug.org/data/ESUG2011/IWST/PRESENTATIONS/23.Mariano\_Peck-Ghost-ESUG2011.pdf
+\item https://rmod.inria.fr/archives/papers/Mart14z-Ghost-Final.pdf
+\item https://gitlab.inria.fr/RMOD/Ghost
+\item https://github.com/guillep/avatar
+\end{itemize}
+
+Another implementation of Ghost:
+
+\begin{itemize}
+\item https://github.com/pharo-ide/Ghost
+\item http://dionisiydk.blogspot.com/2016/04/halt-next-object-call.html
+\end{itemize}
 
 
 

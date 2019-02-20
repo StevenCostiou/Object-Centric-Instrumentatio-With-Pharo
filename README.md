@@ -1,2 +1,2 @@
 # Object-Centric-Instrumentatio-With-Pharo
-Summary of object-centric instrumentation techniques available in Pharo 7.
+A booklet on object-centric instrumentation techniques available in Pharo 7. See resluts/pdf/index.pdf.

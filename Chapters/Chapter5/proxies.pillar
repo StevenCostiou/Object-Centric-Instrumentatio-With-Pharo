@@ -4,14 +4,18 @@ Ghost is a general and uniform proxy implementation${cite:Mart14z}$. A proxy rep
 
 !!!Example
 
-In this example, we use the original implementation of Ghost ${cite:Mart14z}$.
+In this example, we use the original implementation of Ghost ${cite:Mart14z}$. In Ghost, intercepted messages are encapsulated into an instance of ==Interception==. This instance holds the message, the proxy and its target. To handle an interception, we have to model a message handler which implements how the interception is processed. This is done by subclassing the ==GHProxyHandler== class of Ghost:
 
 [[[
 GHProxyHandler subclass: #MyProxyHandler
 	instanceVariableNames: ''
 	classVariableNames: ''
-	package: 'ObjectCentricEvaluationExamples'
+	package: 'MyProxyPackage'
+]]]
 
+In our new handler, we have to implement API methods that will be called by the proxy when a message is intercepted. The first method is the ==manageMessage:== method, to which the proxy passes the interception object. We first extract from the interception the message, the proxy and its target, ''i.e.'' the original object, (lines 3-5). Then we check if the intercepted message is the ==#name:== message (line 6) and in that case, we perform our instrumentation. That instrumentation (line 7) goes over the proxy by sending a direct message to the original object. The intercepted message is then forwarded to the original object (line 8), and the proxy object is returned (lines 9-11). When the message forwarding returns the real object as a result (''i.e'', the method returned ==self==), the proxy is returned instead. In that case, explicitly returning the proxy is important, to ensure that future messages sends to the real object will be intercepted.
+
+[[[
 MyProxyHandler>>manageMessage: interception
 	| message proxy target result |
 	message := interception message.
@@ -23,31 +27,38 @@ MyProxyHandler>>manageMessage: interception
 	^ result == target
 		ifTrue: [ proxy ]
 		ifFalse: [ result ]
+]]]
 
+When the proxy will be installed, the real object references will be exchanged with references to the proxy. Uninstalling the proxy must perform the opposite operation, and restore references to the original object. This is specified through the ==handleUninstall:== API method in the proxy handler. That method is called by the proxy when the ==uninstall== message is intercepted.
+[[[
 MyProxyHandler>>handleUninstall: anInterception
 	^ anInterception proxy proxyTarget become: anInterception proxy.
 ]]]
 
-Then we instrument the objects
+To install the proxy, we use the ==GHTargetBasedProxy== from the Ghost proxy model. The ==createProxyAndReplace:handler:== interface (line 4) replaces all references to the real object by references to the proxy, that will intercept all messages meant to be sent to the original object. The parameters given to that method are the object to ''proxify'' and an instance of our handler class. The ==uninstall== interface restores the original object's references (line 5).
 
 [[[
 |person|
   person := Person new.
-  GHTargetBasedProxy createProxyAndReplace: person handler: MyProxyHandler new.
+  GHTargetBasedProxy
+      createProxyAndReplace: person handler: MyProxyHandler new.
   person uninstall
 ]]]
 
+%""Implementation notes."" The ==GHTargetBasedProxy== proxy class provided by Ghost can be subclassed and specialised for more complex and/or customised %message interception mechanism.
+
 !!!Evaluation
 
-""Manipulated entity: Classes."" Proxies are defined and/or configured in classes which inherits from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply a proxy to objects.
+""Manipulated entity: Classes."" Proxies are defined in classes which inherit from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply a proxy to objects.
 
-""Reusability: Complete."" The same proxy model can be reused to instrument any kind of object with the same instrumentation. Although Ghost proxies are not meant to be composed, it should be possible to ''proxify'' a proxy, if a proper model is implemented to instrument a proxy object.
+""Reusability: Yes."" The same proxy model can be reused to instrument any kind of object with the same instrumentation.
 
 ""Flexibility: Partial."" Because the user has to define a proxy model which specifies which messages are handled and/or which are not. However that allows developers to fully and transparently integrate the instrumented object into the environment.
+#less straightforward than other approaches but allows fine integration into the system.
 
 ""Granularity: Method."" A proxy intercepts messages sends to the object it ''proxifies''. It can execute instrumentation behavior before, after or instead the intercepted message. Sub-method instrumentation cannot be achieved by means of proxies.
 
-""Integration: Full."" because meta-messages can bde efined
+""Integration: Full."" because meta-messages can bde efined but ''ad-hoc''
 
 ""==Self== problem: Implementation dependent.""
 

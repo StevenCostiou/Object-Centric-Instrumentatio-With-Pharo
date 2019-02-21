@@ -1,6 +1,0 @@
-evaluateOverheadFor: aPerson
-  |execTimes|
-  execTimes := OrderedCollection new.
-  1 to: 1000 do:[:i|
-    execTimes add: [aPerson name: i] timeToRun].
-  ^execTimes average

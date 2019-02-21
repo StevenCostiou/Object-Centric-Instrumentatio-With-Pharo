@@ -1,8 +1,0 @@
-
-talent := Trait named: 'MyTalent'.
-talent compile: 'add: anObject
-anObject logCr.
-super add: anObject'.
-col := OrderedCollection new.
-col addTalent: talent.
-col add: 'This is an added object.'

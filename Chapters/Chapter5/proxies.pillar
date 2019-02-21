@@ -4,7 +4,7 @@ Ghost is a general and uniform proxy implementation${cite:Mart14z}$. A proxy rep
 
 !!!Example
 
-In this example, we use the original implementation of Ghost ${cite:Mart14z}$. In Ghost, intercepted messages are encapsulated into an instance of ==Interception==. This instance holds the message, the proxy and its target. To handle an interception, we have to model a message handler which implements how the interception is processed. This is done by subclassing the ==GHProxyHandler== class of Ghost:
+In this example, we use the original implementation of Ghost ${cite:Mart14z}$. In Ghost, intercepted messages are encapsulated into an instance of ==GHInterception==. This instance holds the message, the proxy and its target (the oringal object). To handle an interception, we have to model a message handler which implements how the interception is processed. This is done by subclassing the ==GHProxyHandler== class of Ghost:
 
 [[[
 GHProxyHandler subclass: #MyProxyHandler
@@ -13,7 +13,7 @@ GHProxyHandler subclass: #MyProxyHandler
 	package: 'MyProxyPackage'
 ]]]
 
-In our new handler, we have to implement API methods that will be called by the proxy when a message is intercepted. The first method is the ==manageMessage:== method, to which the proxy passes the interception object. We first extract from the interception the message, the proxy and its target, ''i.e.'' the original object, (lines 3-5). Then we check if the intercepted message is the ==#name:== message (line 6) and in that case, we perform our instrumentation. That instrumentation (line 7) goes over the proxy by sending a direct message to the original object. The intercepted message is then forwarded to the original object (line 8), and the proxy object is returned (lines 9-11). When the message forwarding returns the real object as a result (''i.e'', the method returned ==self==), the proxy is returned instead. In that case, explicitly returning the proxy is important, to ensure that future messages sends to the real object will be intercepted.
+In our new handler, we have to implement API methods that will be called by the proxy when a message is intercepted. The first method is the ==manageMessage:== method, to which the proxy passes the interception object. We first extract from the interception the message, the proxy and its target, ''i.e.'' the original object (lines 3-5). Then we check if the intercepted message is the ==#name:== message (line 6) and in that case, we perform our instrumentation. That instrumentation (line 7) goes over the proxy by sending a direct message to the original object. The intercepted message is then forwarded to the original object (line 8), and the proxy object is returned (lines 9-11). When the message forwarding returns the real object as a result (''i.e'', the method returned ==self==), the proxy is returned instead. In that case, explicitly returning the proxy is important, to ensure that future messages sends to the real object will be intercepted.
 
 [[[
 MyProxyHandler>>manageMessage: interception
@@ -29,7 +29,7 @@ MyProxyHandler>>manageMessage: interception
 		ifFalse: [ result ]
 ]]]
 
-When the proxy will be installed, the real object references will be exchanged with references to the proxy. Uninstalling the proxy must perform the opposite operation, and restore references to the original object. This is specified through the ==handleUninstall:== API method in the proxy handler. That method is called by the proxy when the ==uninstall== message is intercepted.
+When the proxy is installed, the real object references will be exchanged with references to the proxy. Uninstalling the proxy must perform the opposite operation, and restore references to the original object. This is specified through the ==handleUninstall:== API method in the proxy handler. That method is called by the proxy when the special message ==#uninstall== is intercepted.
 [[[
 MyProxyHandler>>handleUninstall: anInterception
 	^ anInterception proxy proxyTarget become: anInterception proxy.
@@ -49,20 +49,19 @@ To install the proxy, we use the ==GHTargetBasedProxy== from the Ghost proxy mod
 
 !!!Evaluation
 
-""Manipulated entity: Classes."" Proxies are defined in classes which inherit from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply a proxy to objects.
+""Manipulated entity: Classes."" Proxies are defined in classes which inherit from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply proxies to objects.
 
 ""Reusability: Yes."" The same proxy model can be reused to instrument any kind of object with the same instrumentation.
 
-""Flexibility: Partial."" Because the user has to define a proxy model which specifies which messages are handled and/or which are not. However that allows developers to fully and transparently integrate the instrumented object into the environment.
-#less straightforward than other approaches but allows fine integration into the system.
+""Flexibility: Partial."" The responsibility to express how intercepted messages are handled falls to the developer. A proxy and a message handling model must be defined through classes. Specifically, as proxies intercept all messages sent to an object, which messages are handled (partial instrumentation) and which are not (''e.g'' meta-messages) has to be manually defined or implemented through an ''ad-hoc'' solution.
 
 ""Granularity: Method."" A proxy intercepts messages sends to the object it ''proxifies''. It can execute instrumentation behavior before, after or instead the intercepted message. Sub-method instrumentation cannot be achieved by means of proxies.
 
-""Integration: Full."" because meta-messages can bde efined but ''ad-hoc''
+""Integration: Full."" Meta-messages can be explicitly configured as such, and handled as special messages. Therefor, instrumentation can be easily integrated into the environment, so that it does not interfere with tools.
 
-""==Self== problem: Implementation dependent.""
+""==Self== problem: Yes."" Messages sends to ==self== can be intercepted, however it is implementation dependent. The original implementation of Ghost does not solve the ==self== problem, but recent implementations do.
 
-""==Super== problem: Implementation dependent."" ?
+""==Super== problem: Yes."" Implementation dependent, see ==Self== problem.
 
 !!!Other documentation
 Implementations and documentation based on the original Ghost paper ${cite:Mart14z}$:

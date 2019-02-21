@@ -21,25 +21,25 @@
 \needspace {3\baselineskip }
 \contentsline {chapter}{\chapternumberline {5}Ghost}{11}{chapter.5}
 \contentsline {section}{\numberline {5.1}Example}{11}{section.5.1}
-\contentsline {section}{\numberline {5.2}Evaluation}{11}{section.5.2}
+\contentsline {section}{\numberline {5.2}Evaluation}{12}{section.5.2}
 \contentsline {section}{\numberline {5.3}Other documentation}{12}{section.5.3}
 \needspace {3\baselineskip }
-\contentsline {chapter}{\chapternumberline {6}Reflectivity}{13}{chapter.6}
-\contentsline {section}{\numberline {6.1}What are Talents}{13}{section.6.1}
-\contentsline {section}{\numberline {6.2}Example}{13}{section.6.2}
-\contentsline {subsection}{Installing Talents}{13}{section*.2}
-\contentsline {subsection}{Example}{13}{section*.3}
-\contentsline {section}{\numberline {6.3}Evaluation}{13}{section.6.3}
+\contentsline {chapter}{\chapternumberline {6}Reflectivity}{15}{chapter.6}
+\contentsline {section}{\numberline {6.1}What are Talents}{15}{section.6.1}
+\contentsline {section}{\numberline {6.2}Example}{15}{section.6.2}
+\contentsline {subsection}{Installing Talents}{15}{section*.2}
+\contentsline {subsection}{Example}{15}{section*.3}
+\contentsline {section}{\numberline {6.3}Evaluation}{15}{section.6.3}
 \needspace {3\baselineskip }
-\contentsline {chapter}{\chapternumberline {7}Low-level techniques}{15}{chapter.7}
-\contentsline {section}{\numberline {7.1}Example}{15}{section.7.1}
-\contentsline {subsection}{Installing Talents}{15}{section*.4}
-\contentsline {subsection}{Example}{15}{section*.5}
-\contentsline {section}{\numberline {7.2}Evaluation}{16}{section.7.2}
+\contentsline {chapter}{\chapternumberline {7}Low-level techniques}{17}{chapter.7}
+\contentsline {section}{\numberline {7.1}Example}{17}{section.7.1}
+\contentsline {subsection}{Installing Talents}{17}{section*.4}
+\contentsline {subsection}{Example}{17}{section*.5}
+\contentsline {section}{\numberline {7.2}Evaluation}{18}{section.7.2}
 \needspace {3\baselineskip }
-\contentsline {chapter}{\chapternumberline {8}Conclusion}{17}{chapter.8}
-\contentsline {section}{\numberline {8.1}Example}{17}{section.8.1}
-\contentsline {subsection}{Installing Talents}{17}{section*.6}
-\contentsline {subsection}{Example}{17}{section*.7}
-\contentsline {section}{\numberline {8.2}Evaluation}{18}{section.8.2}
-\contentsline {chapter}{Bibliography}{19}{chapter*.8}
+\contentsline {chapter}{\chapternumberline {8}Conclusion}{19}{chapter.8}
+\contentsline {section}{\numberline {8.1}Example}{19}{section.8.1}
+\contentsline {subsection}{Installing Talents}{19}{section*.6}
+\contentsline {subsection}{Example}{19}{section*.7}
+\contentsline {section}{\numberline {8.2}Evaluation}{20}{section.8.2}
+\contentsline {chapter}{Bibliography}{21}{chapter*.8}

@@ -39,3 +39,6 @@ Talents are based on traits. Objects can answer to the ==#addTalent:== messages 
 !!!Other documentation
 The new implementation of Talents is available and documented on Github:
 - https://github.com/tesonep/pharo-talents
+
+Documentation on Traits:
+- https://github.com/pharo-open-documentation/pharo-wiki/blob/master/General/Traits.md

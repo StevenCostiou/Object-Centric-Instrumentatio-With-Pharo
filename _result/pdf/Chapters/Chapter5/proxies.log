@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  20 FEB 2019 14:00
+This is LuaTeX, Version 1.07.0 (TeX Live 2018)  (format=lualatex 2018.10.15)  21 FEB 2019 13:37
  restricted system commands enabled.
 **Chapters/Chapter5/proxies.tex
 (./Chapters/Chapter5/proxies.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.112 seconds
+luaotfload | main : initialization completed in 0.170 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (./_support/latex/sbabook/sbabook.cls
 
@@ -2108,22 +2108,30 @@ g;+pnum;+lnum;"
 LaTeX Font Info:    Font shape `TU/OpenSans(2)/bx/n' will be
 (Font)              scaled to size 20.69638pt on input line 95.
 
+\openout5 = proxies.listing
+
+(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
+_result/pdf/Chapters/Chapter5/proxies.listing)
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1
 
 
 ]
-LaTeX Font Info:    Font shape `TU/FiraMono(0)/bx/n' will be
-(Font)              scaled to size 8.55179pt on input line 110.
+\openout5 = proxies.listing
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
-_result/pdf/Chapters/Chapter5/proxies.bbl
+_result/pdf/Chapters/Chapter5/proxies.listing)
+LaTeX Font Info:    Font shape `TU/FiraMono(0)/bx/n' will be
+(Font)              scaled to size 8.55179pt on input line 141.
+
 warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
 [2]
-bibitemlist
-) [3
+(/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
+_result/pdf/Chapters/Chapter5/proxies.bbl [3] [4
 
-] [4
+]
+bibitemlist
+) [5] [6
 
 ]
 \tf@toc=\write8
@@ -2132,28 +2140,29 @@ bibitemlist
 \tf@lof=\write9
 
 \openout9 = proxies.lof
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 141.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
 
 (/Users/steven/Documents/papers/books/Object-Centric-Instrumentatio-With-Pharo/
 _result/pdf/Chapters/Chapter5/proxies.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 141.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 141.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
 Package rerunfilecheck Info: File `proxies.out' has not changed.
 (rerunfilecheck)             Checksum: 9AEEF55C72759307E838D55F2DEFBAF2;626.
 )
 (\end occurred when \ifx on line 34 was incomplete)
 
 Here is how much of LuaTeX's memory you used:
- 38876 strings out of 494413
+ 38995 strings out of 494413
  100000,1144653 words of node,token memory allocated
  1373 words of node memory still in use:
    7 hlist, 5 vlist, 1 rule, 10 glue, 1 glyph, 14 attribute, 208 glue_spec, 14 a
 ttribute_list, 2 write, 4 pdf_literal nodes
-   avail lists: 1:2,2:1285,3:241,4:27,5:68,6:20,7:2685,8:59,9:98,10:8,11:138
- 41767 multiletter control sequences out of 65536+600000
+   avail lists: 1:2,2:1564,3:241,4:27,5:833,6:34,7:2792,8:472,9:1439,10:9,11:232
+
+ 41837 multiletter control sequences out of 65536+600000
  91 fonts using 14074231 bytes
- 67i,12n,122p,849b,717s stack positions out of 5000i,500n,10000p,200000b,100000s
+ 67i,12n,122p,849b,1051s stack positions out of 5000i,500n,10000p,200000b,100000s
 </usr/local/texlive/2018/texmf-dist/fonts/opentype/public/fira/FiraMono-Bold.otf
 ></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/gentium-tug/GenBkBasI
 .ttf></usr/local/texlive/2018/texmf-dist/fonts/opentype/public/fira/FiraMono-Reg
@@ -2163,9 +2172,9 @@ ug/GenBkBasR.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/public/opens
 ans/OpenSans-Regular.ttf></usr/local/texlive/2018/texmf-dist/fonts/truetype/publ
 ic/opensans/OpenSans-Bold.ttf></usr/local/texlive/2018/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmr7.pfb>
-Output written on proxies.pdf (8 pages, 114082 bytes).
+Output written on proxies.pdf (10 pages, 122667 bytes).
 
-PDF statistics: 154 PDF objects out of 1000 (max. 8388607)
- 15 named destinations out of 1000 (max. 131072)
+PDF statistics: 189 PDF objects out of 1000 (max. 8388607)
+ 42 named destinations out of 1000 (max. 131072)
  154 words of extra memory for PDF output out of 10000 (max. 100000000)
 

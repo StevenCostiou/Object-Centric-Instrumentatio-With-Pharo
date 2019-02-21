@@ -1,0 +1,10 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{RGN{\etalchar{+}}14}
+
+\bibitem[RGN{\etalchar{+}}14]{ressia2014talents}
+Jorge Ressia, Tudor G{\^\i}rba, Oscar Nierstrasz, Fabrizio Perin, and Lukas
+  Renggli.
+\newblock Talents: an environment for dynamically composing units of reuse.
+\newblock {\em Software: Practice and Experience}, 44(4):413--432, 2014.
+
+\end{thebibliography}

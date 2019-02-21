@@ -1,0 +1,10 @@
+|person talent|
+  person := Person new.
+	talent := Trait new.
+	talent
+		compile:
+			'name: aName
+	       self tag: aName.
+	       name := aName'.
+	person addTalent: talent. "adds the talent to the object"
+  person removeTalent: talent. "removes the talent from the object"

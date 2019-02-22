@@ -1,44 +1,47 @@
-!!Reflectivity
-Talents ${cite:ressia2014talents}$ is this.
+!!MetaLink
 
-!!!What are Talents
+A metalink is an object that annotates the abstract syntax tree (AST) of a program with user-defined meta-behavior definition. At run-time, ''i.e.'' when the annotated node is executed, the metalink is triggered and executes the meta-behavior. To that end, a metalink is configured with a meta-object, a selector, and a list of arguments (reifications from the execution context). When the metalink is triggered, the message selector is sent to the meta-object, with the arguments list as parameter. Metalink annotate
+
 
 !!!Example
-!!!!Installing Talents
-aa
-[[[label=install|caption=Installation from Github|language=smalltalk
+An instance of ==MetaLink== is created and configured to implement our instrumentation. First, we pass to the metalink a meta-object (line 3). In that case, we pass the ==#object== reification. At run-time, it represents the object executing the current method in which the metalink is triggered. The selector defines the message that will be sent to the meta-object when the link is triggered.
 
-Metacello new
-  baseline: 'Talents';
-  repository: 'github://tesonep/pharo-talents/src';
-  load.
+[[[
+|link person|
+link := MetaLink new.
+link metaObject: #object.
+link selector: #tag:.
+link arguments: #(#value).
+
+person := Person new.
+person link: link toSlotNamed: #name option: #write.
+link uninstall
 ]]]
-
-!!!!Example
-bb
-[[[label=talent-example|caption=Installation from Github|language=smalltalk|lineNumber=true
-
-talent := Trait named: 'MyTalent'.
-talent compile: 'add: anObject
-anObject logCr.
-super add: anObject'.
-col := OrderedCollection new.
-col addTalent: talent.
-col add: 'This is an added object.'
-]]]
-
-
 
 !!!Evaluation
-cc
 
-@@note this is a note annotation.
+""Manipulated entity: Metalinks."" Proxies are defined in classes which inherit from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply proxies to objects.
 
-@@todo this is a todo annotation
+""Reusability: Yes."" The same proxy model can be reused to instrument any kind of object with the same instrumentation.
 
-|!Country |!Capital
-|France | Paris
-|Belgium | Brussels
-|!Country |!Capital
-|France | Paris
-|Belgium | Brussels
+""Flexibility: Partial."" The responsibility to express how intercepted messages are handled falls to the developer. A proxy and a message handling model must be defined through classes. Specifically, as proxies intercept all messages sent to an object, which messages are handled (partial instrumentation) and which are not (''e.g'' meta-messages) has to be manually defined or implemented through an ''ad-hoc'' solution.
+
+""Granularity: Method."" A proxy intercepts messages sends to the object it ''proxifies''. It can execute instrumentation behavior before, after or instead the intercepted message. Sub-method instrumentation cannot be achieved by means of proxies.
+
+""Integration: Full."" Meta-messages can be explicitly configured as such, and handled as special messages. Therefor, instrumentation can be easily integrated into the environment, so that it does not interfere with tools.
+
+""==Self== problem: Yes."" Messages sends to ==self== can be intercepted, however it is implementation dependent. The original implementation of Ghost does not solve the ==self== problem, but recent implementations do.
+
+""==Super== problem: Yes."" Implementation dependent, see ==Self== problem.
+
+!!!Other documentation
+Implementations and documentation based on the original Ghost paper ${cite:Mart14z}$:
+
+- http://esug.org/data/ESUG2011/IWST/PRESENTATIONS/23.Mariano_Peck-Ghost-ESUG2011.pdf
+- https://rmod.inria.fr/archives/papers/Mart14z-Ghost-Final.pdf
+- https://gitlab.inria.fr/RMOD/Ghost
+- https://github.com/guillep/avatar
+
+Another implementation of Ghost:
+- https://github.com/pharo-ide/Ghost
+- http://dionisiydk.blogspot.com/2016/04/halt-next-object-call.html

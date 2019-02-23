@@ -38,6 +38,7 @@
 \settypeoutlayoutunit{mm}
 
 \raggedbottom
+\sloppy
 
 %%%
 %%% Fonts & paragraph typography
@@ -75,7 +76,7 @@
   \normalfont\sffamily #1}
 
 \RequirePackage{ragged2e}
-\RaggedRight
+%\RaggedRight
 \RequirePackage{varwidth}
 \newenvironment{balanced}[1]{%
     \CenteringLeftskip    0pt plus 6em%
@@ -468,4 +469,3 @@
 %%% Language, localizations, hyphenation
 %%%
 \RequirePackage{polyglossia}
-

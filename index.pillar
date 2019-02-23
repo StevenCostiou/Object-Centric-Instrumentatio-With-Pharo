@@ -1,3 +1,7 @@
+!!!!!Structure of the book
+The first chapter introduces the contents of the book, ''i.e.'' an overview of object-centric instrumentation techniques available in Pharo 7. The second chapter is a summary of the evaluation results of the presented techniques. A reader may directly read this chapter if he is already familiar with the Pharo techniques presented in the book. Chapters 3 to 7 describe five solutions for object-centric instrumentation, and provide an evaluation of these solutions. Chapter 8 drafts the premises of an object-centric debugger and concludes the book.
+
+!!!!!Acknowledgements
 
 ${inputFile:path=Chapters/Chapter1/chapter1.pillar}$
 

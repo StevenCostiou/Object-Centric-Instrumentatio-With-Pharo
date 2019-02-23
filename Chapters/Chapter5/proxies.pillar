@@ -59,9 +59,9 @@ To install the proxy, we use the ==GHTargetBasedProxy== from the Ghost proxy mod
 
 ""Integration: Full."" Meta-messages can be explicitly configured as such, and handled as special messages. Therefor, instrumentation can be easily integrated into the environment, so that it does not interfere with tools.
 
-""==Self== problem: Yes."" Messages sends to ==self== can be intercepted, however it is implementation dependent. The original implementation of Ghost does not solve the ==self== problem, but recent implementations do.
+""==Self== problem: Solved."" Messages sends to ==self== can be intercepted, however it is implementation dependent. The original implementation of Ghost does not solve the ==self== problem, but recent implementations do.
 
-""==Super== problem: Yes."" Implementation dependent, see ==Self== problem.
+""==Super== problem: Solved."" Implementation dependent, see ==Self== problem.
 
 !!!Other documentation
 Implementations and documentation based on the original Ghost paper ${cite:Mart14z}$:

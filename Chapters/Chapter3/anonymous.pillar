@@ -1,4 +1,5 @@
 !!Anonymous subclasses
+@anonymous
 
 Anonymous classes are nameless classes that are inserted between an object and its original class ${cite:foote1989reflective,hinkle1993debugging}$. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved. It is one of the fastest implementation for object-centric instrumentation ${cite:ducasse1999evaluating}$.
 
@@ -33,7 +34,7 @@ Anonymous subclasses are derived from the original class of the object (line 3).
 
 ""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
 
-""==Self== problem: Solved."" By design, ==self== always references the original object.
+""==Self== problem: Solved."" By design, as objects are migrated into anonymous subclasses, ==self== always references the original object.
 
 ""==Super== problem: Not solved."" There are no means to express how to resolve the lookup when a message is sent to ==super== from a method copied down in an anonymous subclass.
 

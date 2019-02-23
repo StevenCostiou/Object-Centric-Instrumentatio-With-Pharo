@@ -1,10 +1,9 @@
 !!MetaLink
 
-A metalink is an object that annotates the abstract syntax tree (AST) of a program with user-defined meta-behavior definition. At run-time, ''i.e.'' when the annotated node is executed, the metalink is triggered and executes the meta-behavior. To that end, a metalink is configured with a meta-object, a selector, and a list of arguments (reifications from the execution context). When the metalink is triggered, the message selector is sent to the meta-object, with the arguments list as parameter. Metalink annotate
-
+A metalink annotates the abstract syntax tree (AST) of a program with user-defined meta-behavior. At run-time, ''i.e.'' when the annotated node is executed, the metalink is triggered and executes the meta-behavior. To that end, a metalink is configured with a meta-object, a selector, and a list of arguments (reifications from the execution context). When the metalink is triggered, the message designated by the selector is sent to the meta-object, with the arguments list as parameter. Metalinks can annotate the AST of a method, or any sub-node of that AST, ''e.g.'' a message send or a variable read. By default, a metalink will trigger meta-behavior for all instances of the class from which a method's AST has been annotated. Metalinks can be scoped to specific objects, and an API eases the installation of metalinks on variable access (for instance and temporary variables). To scope a metalink to an object, the target AST is copied down in an anonymous subclass (Chapter *@anonymous*). The metalink is then installed on the AST copy in the anonymous class and the object is migrated to that new class. Metalinks are part of the ''Reflectivity'' library${cite:denker2008sub}$, which is included in the reflection layer of Pharo.
 
 !!!Example
-An instance of ==MetaLink== is created and configured to implement our instrumentation. First, we pass to the metalink a meta-object (line 3). In that case, we pass the ==#object== reification. At run-time, it represents the object executing the current method in which the metalink is triggered. The selector defines the message that will be sent to the meta-object when the link is triggered.
+To annotate an AST, we must instantiate a ==MetaLink== and configure this instance to implement our instrumentation (line 2). First we pass to the metalink a meta-object (line 3), here the ==#object== reification. At run-time, it represents the object executing the current method in which the metalink is triggered. The selector defines the message that will be sent to the meta-object when the link is triggered. Here, it is the ==#tag:== selector (line 4). The arguments is a list of reifications from the execution context. As we are trying to capture the value that is being written in the ==name== instance variable, we ask for the ==#value== reification (line 5). The metalink is then installed on an instance of class ==Person== (line 8). The API that is used in this example will install the metalink on all write accesses to the ==name== slot of the object. At run-time, the metalink will fire every time something is written in the ==name== instance variable, ''i.e.'' send the ==#tag:== message to the ==person== object with the value being written as a parameter. The metalink can be uninstalled (line 9), removing all annotations from the AST and restoring the original behavior of the instrumented object.
 
 [[[
 |link person|
@@ -20,28 +19,29 @@ link uninstall
 
 !!!Evaluation
 
-""Manipulated entity: Metalinks."" Proxies are defined in classes which inherit from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply proxies to objects.
+""Strenghts and weaknesses.""
+;""+""
+:Provides access to fine reifications of the execution context
+;""-""
+:Forces the user to manipulate the structure of the program (the AST)
+;""-""
+:More suited for specific rather than system-wide instrumentation
 
-""Reusability: Yes."" The same proxy model can be reused to instrument any kind of object with the same instrumentation.
 
-""Flexibility: Partial."" The responsibility to express how intercepted messages are handled falls to the developer. A proxy and a message handling model must be defined through classes. Specifically, as proxies intercept all messages sent to an object, which messages are handled (partial instrumentation) and which are not (''e.g'' meta-messages) has to be manually defined or implemented through an ''ad-hoc'' solution.
+""Manipulated entity: Metalinks."" Instances of ==MetaLink== are the means to express and install meta-behavior on the AST of a program.
 
-""Granularity: Method."" A proxy intercepts messages sends to the object it ''proxifies''. It can execute instrumentation behavior before, after or instead the intercepted message. Sub-method instrumentation cannot be achieved by means of proxies.
+""Reusability: Yes."" The same metalink can be put on any AST node, as long as the reifications asked by the user can be provided by that node. A metalink can be installed on different classes as well as on any number of specific objects at the same time.
 
-""Integration: Full."" Meta-messages can be explicitly configured as such, and handled as special messages. Therefor, instrumentation can be easily integrated into the environment, so that it does not interfere with tools.
+""Flexibility: Partial."" In some cases, object-centric instrumentation by means of metalinks is non-applicable. For example, an instance variable can be accessed both in a method defined in the object's class and in the method it redefines in the super class. Installing a metalink on all accesses to that instance variable may lead to un-predictable modification of the object's behavior. Both methods have the same signature, yet both are going to be copied down for instrumentation in the anonymous subclass, to which the object will be migrated.
 
-""==Self== problem: Yes."" Messages sends to ==self== can be intercepted, however it is implementation dependent. The original implementation of Ghost does not solve the ==self== problem, but recent implementations do.
+""Granularity: Sub-Method."" Metalinks can be installed on any sub-node of a method's AST, achieving a very fine granularity for instrumentation.
 
-""==Super== problem: Yes."" Implementation dependent, see ==Self== problem.
+""Integration: Partial."" Object-centric instrumentation by means of metalinks can break tools relying on meta-information. Typically, tools or libraries relying on structure (class) to discriminate objects will be affected, as instrumented objects are migrated to anonymous subclasses.
+
+""==Self== problem: Solved."" By design, as objects are migrated into anonymous subclasses, ==self== always references the original object.
+
+""==Super== problem: Solved."" As instrumented objects are migrated to anonymous subclasses, the lookup for messages sent to ==super== is altered. In instrumented methods, that lookup is instrumented so that it always resolves in the super class of the original object's class.
 
 !!!Other documentation
-Implementations and documentation based on the original Ghost paper ${cite:Mart14z}$:
-
-- http://esug.org/data/ESUG2011/IWST/PRESENTATIONS/23.Mariano_Peck-Ghost-ESUG2011.pdf
-- https://rmod.inria.fr/archives/papers/Mart14z-Ghost-Final.pdf
-- https://gitlab.inria.fr/RMOD/Ghost
-- https://github.com/guillep/avatar
-
-Another implementation of Ghost:
-- https://github.com/pharo-ide/Ghost
-- http://dionisiydk.blogspot.com/2016/04/halt-next-object-call.html
+Description of the Reflectivity API:
+- https://github.com/SquareBracketAssociates/Booklet-Reflectivity

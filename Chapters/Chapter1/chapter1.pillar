@@ -1,69 +1,77 @@
 !!Introduction
 @intro
 
-This booklet is about object-centric instrumentation in Pharo. An instrumentation is object-centric if it applies to one specific object (or a set of objects), without consideration of its class. It means the instrumentation can be applied on one object, leaving untouched all other instances of its class, or to an heterogeneous set of instances of different classes. This booklet gives an overview of available object-centric instrumentation techniques in Pharo, either present in the standard distribution or available on download. We only focus on object-centric state-access instrumentation, which is a particular case of object-centric instrumentation. We will not go into deep technical usage description, nor into implementation details. Each chapter illustrates one solution with examples, and gives the necessary references if one wants to go deeper in the study of the solution. We study each technique following a three-fold evaluation. First, the studied technique is applied on a simple example of object-centric instrumentation. Second, the technique is evaluated against a set of desirable properties. Finally, performance overhead are evaluated. Only the raw solution is evaluated, without considering the possibility of enhancing the technique by building something on top.
+This booklet enumerates and illustrates techniques for object-centric instrumentation in Pharo. An instrumentation is object-centric if it applies to one specific object (or a set of objects), without consideration of its class. It means the instrumentation can be applied on one object, leaving untouched all other instances of its class, or to an heterogeneous set of instances of different classes. This booklet gives an overview of available object-centric instrumentation techniques in Pharo, either present in the standard distribution or available on download. We only focus on object-centric state-access instrumentation, ''i.e.'' additional behavior triggered when an instance variable is read or written.
 
-This chapter presents the three-fold evaluation applied to each studied technique, based on the current stable Pharo 7. Each time, a new Pharo image is created, the evaluation code is loaded as well as the studied solution's packages if needed. Then the evaluation is performed. The evaluation code presented in this chapter is available on Github at the following address:
+ We will not go into deep technical usage description, nor into implementation details. Each chapter illustrates one solution, through the an example of object-centric state-access instrumentation depicted in Chapter *@intro*. We give additional pointers to go deeper in the study of the solution.
 
-https://github.com/StevenCostiou/PharoObjectCentricEvaluationExamples
+  We study five object-centric instrumentation solutions, namely ''Anonymous Subclasses'', ''Talents'', ''Ghost'', ''MetaLink'' and ''Read Only Objects''. To that end, we follow a three-fold evaluation. First, the studied technique is applied on a simple example of object-centric instrumentation. This example, depicted in this chapter, consists to the interception of the writing of a new value into an instance variable, and to capture of that value into another instance variable. Second, the technique is evaluated against a set of desirable properties. Finally, performance overhead is evaluated. We only evaluate raw solutions in the scope of the provided example, without considering the possibility of enhancing the technique by building something on top or with optimisations.
+
+This chapter presents the three-fold evaluation that is applied to each studied technique, based on the current stable version of Pharo 7. Each time, a new Pharo image is created, the evaluation code is loaded as well as the studied solution's packages if needed. Then the evaluation is performed.
+
+The evaluation code and example presented in this chapter is available on Github, along with unit tests illustrating the application of each technique. The whole code can be loaded into Pharo by executing the current code snippet:
+
+[[[
+Metacello new
+    baseline: 'ObjectCentricEvaluationExamples';
+    repository: 'github://StevenCostiou/PharoObjectCentricEvaluationExamples';
+    load.
+]]]
+%https://github.com/StevenCostiou/PharoObjectCentricEvaluationExamples
 
 !!!Illustration example
 %*@example-model*
 %label=example-model|caption=The ==Person== class|language=Smalltalk|lineNumber=true
-Each studied solution is experimented on an example of object-centric behavior instrumentation. We use a class ==Person== defined in the following script. This class has a ==name== instance variable and a ==name:== method. This method stores the parameter it is given into the instance variable. We would like that each time a value is stored in that instance variable, that value is printed on the ==Transcript==.
+
+Each studied solution is experimented on an example of object-centric behavior instrumentation. We use a class ==Person== defined in the following script. This class has two instance variables: ==name== and ==tag==. It has two accessors: ===name:== and ==tag:==.
 
 [[[
-Person >> name: aName
+Person>>name: aName
     name := aName
+
+Person>>tag: aTag
+    tag := aTag
 ]]]
 
-The instrumentation can be defined as follows, if ==aName== is the reference to the value being stored in the ==name== instance variable of the ==Person== instance:
-[[[
-aName logCr
-]]]
+ We would like that each time a value is stored in that instance variable, that value is printed on the ==Transcript==.
 
-The evaluation example is defined in the following script. Two instances ==p1== and ==p2== of class ==Person== are created, and object-centric instrumentation must be applied to the ==p2== instance. Then each of these instances is given a name through a call to the ==name:== method. The result must be that ==p2== prints its name in the ==Transcript==, while nothing must happen for ==p1==.
-%*@motivation-example*
-%label=motivation-example|caption=Evaluation example for object-centric instrumentation|language=Smalltalk|lineNumber=true
+The instrumentation is defined as follows: each time a value is stored into the ==name== instance variable, that value is captured and stored into the ==tag== instance variable. We do not consider the moment of the capture, which can be before or after the ''physical'' write into ==name==. As instances of ==Person== only have one method accessing the ==name== variable, we need to instrument that method and to scope the instrumentation of a specific object.
+
+We evaluate this scenario for each studied technique through unit tests. In the following script, ==p1== and ==p2== are two different instances of the ==Person== class. For each solution, the instrumentation is applied to the ==p2== instance only, then the test from the script is executed. This test sends the ==#name:== message to both instances. The ==tag== instance variable must be ==nil== for ==p1== (''i.e.'' no instrumentation). For ==p2==, the instrumented instance, the value that was written in its ==name== instance variable must have been captured during state access and stored into the ==tag== variable.
+
 [[[
-  |p1 p2|
-  p1 := Person new.
-  p2 := Person new.
-  "Instrumentation must be applied to p2 here"
-  p1 name: 'Worf'.
-  p2 name: 'Dax'.
-  "Only 'Dax' prints in the Transcript"
+ObjectCentricInstrumentationTest>>assertObjectCentricInstrumentation
+	p1 name: 'Worf'.
+	p2 name: 'Dax'.
+	self assert: p1 tag isNil.
+	self assert: p2 tag equals: 'Dax'
 ]]]
 
 !!!Evaluation criteria
 
 Each solution is evaluated against the following desirable properties.
 
-|!Property|!Definition
-|Manipulated entity|The unit of instrumentation
-| |(''e.g.'' a class, a Trait, an object...)
-|Reusability|The entity can be reused to instrument different objects
-|Flexibility|Instrumentation does not put constraint on the
-| | source code or in the coding style
-|Granularity|The level of at which behavior can be instrumented
-| |(''e.g.'' method, AST...)
-|Integration|Instrumentation does not break system features
+""Manipulated entity."" Classes, traits, objects, methods... The entity that is manipulated to express and install the instrumentation.
 
+""Reusability."" Evaluates if the same instrumentation unit can be reused to instrument different objects with the same behavior.
+
+""Flexibility."" We consider the solution to be flexible if it does not put any constraints on the program prior to the instrumentation, and if it does not requires the developer to perform annoying repetitive and error-prone tasks. For example, it must not requires to copy existing code, to use a specific coding-style, or if it cannot apply in certain cases.
+
+""Granularity."" The level of at which behavior can be instrumented. We consider two granularities: method and sub-method. The method granularity can only instrument a whole method, by controlling message passing. The sub-method level can instrument specific elements of a method.
+
+""Integration."" An instrumentation must not break system tools and features nor user libraries and programs.
+
+""==Self== problem.""  Object-specific instrumentation should be applicable to messages sent to the ==self== pseudo-variable, ''i.e.'' the original receiver.
+
+""==Super== problem."" Object-specific instrumentation should be applicable to messages sent to the ==super== pseudo-variable, ''i.e.'' the original receiver. When those messages are not subject to instrumentation, their lookup must resolve in the super class of the original object's class.
 
 !!!Performance overhead evaluation
 
-To provide a approximation of the performance overhead due to instrumentation, we compare the execution time of a block of code without instrumentation with the execution time of an instrumented block of code. The method ==evaluateOverheadFor:== from the following script shows how the average execution time is computed. The parameter is an instance of ==Person== that is either not instrumented (''i.e.'' to compute the reference execution time used for comparison) or instrumented by one of the studied techniques. The ==#name:== message is sent a thousand times to the ==Person== instance and each time the execution time is recorded. An average of all the execution times is computed and returned by the method. This average time is used to compare execution time of an instrumented instance against the execution time of a non-instrumented instance.
+To provide a approximation of the performance overhead due to instrumentation, we compare the execution time of a block of code using an instrumented object with a reference execution time of a block of code using a non-instrumented object. The method ==evaluateOverheadFor:== from the following script shows how execution time is computed. The parameter is an instance of ==Person==. The ==#name:== message is sent 1000000 times to the ==Person== instance, and the overall execution time is returned. This returned time is used to compare execution time of an instrumented instance against the execution time of a non-instrumented instance.
 
-%label=performance-overhead-method|caption=Performance overhead evaluation script|language=Smalltalk|lineNumber=true
-%*@performance-overhead-method*
 [[[
-evaluateOverheadFor: aPerson
-  |execTimes|
-  execTimes := OrderedCollection new.
-  1 to: 1000 do:[:i|
-    execTimes add: [aPerson name: i] timeToRun].
-  ^execTimes average
+ObjectCentricOverheadEvaluation>>evaluateOverheadFor: aPerson
+	^[  timesRepeat: [ aPerson name: 'eval' ] ] timeToRun
 ]]]
 
-!!!Structure of the book
-The second chapter will provide an overview of the evaluation results of object-centric instrumentation techniques available in Pharo. A reader may directly read this chapter if he is already familiar with the Pharo techniques presented in the book. Chapters 3 to 7 describe five solutions for object-centric instrumentation, and provide an evaluation of these solutions. Chapter 8 drafts the premises of an object-centric debugger and concludes the book.
+The non-instrumented instance is an instance of a modified ==Person== class in which the instrumentation is hardcoded. It is a means to obtain a reference execution time with instrumentation applied as if it were originally part of the program. Instrumented instances are instances of ==Person== for which one of the studied solutions is used to apply the same instrumentation as the hardcoded one for the reference execution time. Performance overhead is evaluated for each solution following the aforementioned protocol. 

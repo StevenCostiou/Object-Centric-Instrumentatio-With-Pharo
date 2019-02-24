@@ -49,7 +49,7 @@ To install the proxy, we use the ==GHTargetBasedProxy== from the Ghost proxy mod
 
 !!!Evaluation
 
-""Strenghts and weaknesses.""
+""Strengths and weaknesses.""
 ;""+""
 :Can intercept and control all messages sent to an object
 ;""+""

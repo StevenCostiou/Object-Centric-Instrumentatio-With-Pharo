@@ -22,7 +22,7 @@ Talents are based on traits. Objects can answer to the ==#addTalent:== messages 
 
 !!!Evaluation
 
-""Strenghts and weaknesses.""
+""Strengths and weaknesses.""
 ;""+""
 :Can reuse and compose behavior from traits
 ;""-""

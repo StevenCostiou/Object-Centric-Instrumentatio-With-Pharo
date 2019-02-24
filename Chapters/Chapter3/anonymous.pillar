@@ -24,7 +24,7 @@ Anonymous subclasses are derived from the original class of the object (line 3).
 
 !!!Evaluation
 
-""Strenghts and weaknesses.""
+""Strengths and weaknesses.""
 ;""+""
 :Fastest known technique for object-centric instrumentation in Pharo
 ;""+""

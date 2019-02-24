@@ -22,6 +22,14 @@ Talents are based on traits. Objects can answer to the ==#addTalent:== messages 
 
 !!!Evaluation
 
+""Strenghts and weaknesses.""
+;""+""
+:Can reuse and compose behavior from traits
+;""-""
+:Inherits from traits limitations: glue code may be necessary and conflicts from composition must be solved manually
+;""-""
+:Is Talent addition to objects is thread-safe?
+
 ""Manipulated entity: Trait."" Behavioral variations are expressed using traits. It can be Traits defined in the image or anonymous trait instances in which specific behavior is manually compiled by the developer.
 
 ""Reusability: Yes."" A trait can be added as a Talent to any number of objects.

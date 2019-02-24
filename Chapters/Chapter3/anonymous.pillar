@@ -24,11 +24,23 @@ Anonymous subclasses are derived from the original class of the object (line 3).
 
 !!!Evaluation
 
+""Strenghts and weaknesses.""
+;""+""
+:Fastest known technique for object-centric instrumentation in Pharo
+;""+""
+:Interesting starting point to build solutions on top
+;""-""
+:No abstraction to control or to express object-centric instrumentation
+;""-""
+:Very low flexibility regarding the modification of the instrumentation (manual copy and removal of methods to and from anonymous classes)
+;""-""
+:Migration of objects to anonymous subclasses is not thread-safe
+
 ""Manipulated entity: Classes."" Behavioral variations are expressed in standard methods, compiled in anonymous classes.
 
 ""Reusability: Partial."" As an anonymous subclass is derived from the original class of an object, only instances of that same class can be migrated to the anonymous subclass. To apply the same instrumentation to an instance of another class, a new anonymous subclass must be created and the instrumented behavior must be recompiled in that subclass.
 
-""Flexibility: None."" Instrumented methods must always be copied down to anonymous subclasses, and instrumentation must be inserted in the duplicated code. Without any tool built on top, that instrumentation is fully manual. Anonymous subclasses cannot be composed.
+""Flexibility: None."" Instrumented methods must always be copied down to anonymous subclasses, and instrumentation must be inserted in the duplicated code. Without any tool built on top, that instrumentation is fully manual.
 
 ""Granularity: Method."" Instrumentation is implemented by recompiling modified copies of methods in anonymous subclasses. Sub-method level is achieved through manual rewriting of the method.
 

@@ -49,6 +49,18 @@ To install the proxy, we use the ==GHTargetBasedProxy== from the Ghost proxy mod
 
 !!!Evaluation
 
+""Strenghts and weaknesses.""
+;""+""
+:Can intercept and control all messages sent to an object
+;""+""
+:Integration to the environment can be finely tuned through the explicit handling of meta-messages
+;""-""
+:Dedicated proxy models must be built from the core Ghost proxies to cope with very specific cases, having a unique proxy model handling every possibility is at the cost of performance
+;""-""
+:Slower than techniques based on anonymous classes
+;""-""
+:Replacement of objects by proxies is not thread-safe
+
 ""Manipulated entity: Classes."" Proxies are defined in classes which inherit from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply proxies to objects.
 
 ""Reusability: Yes."" The same proxy model can be reused to instrument any kind of object with the same instrumentation.

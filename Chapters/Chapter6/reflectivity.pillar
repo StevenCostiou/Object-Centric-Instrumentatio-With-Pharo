@@ -26,6 +26,8 @@ link uninstall
 :Forces the user to manipulate the structure of the program (the AST)
 ;""-""
 :More suited for specific rather than system-wide instrumentation
+;""-""
+:MetaLink installation is not thread-safe
 
 
 ""Manipulated entity: Metalinks."" Instances of ==MetaLink== are the means to express and install meta-behavior on the AST of a program.

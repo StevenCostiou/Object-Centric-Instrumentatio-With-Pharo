@@ -1,2 +1,35 @@
 !!Summary of the overall evaluations
-If you already know Pharo and (some of) the presented technique, this chapter is a global summary with spoilers.
+If you already know Pharo and (some of) the presented technique, this chapter is a global summary of the overall evaluation. It contains spoilers, obviously. Results are not commented nor detailed. The performance overhead evaluation, described in Chapter *@intro*, speaks for itself, while the property evaluation is detailed in each chapter.
+
+!!!Performance overhead evaluation
+
+The following table reports execution times and a time factor for each solution against the reference code (see Chapter *@intro*).
+
+|!Solution |!Execution time (ms) |!Time Factor
+|Reference execution| 935 | x1
+|Anonymous Classes | 968 |x1.035
+|MetaLink | 984 |x1.052
+|Talents | 958 |x1.025
+|Ghost | 41500 |x44.38
+|Change Detector | 532496 |x570
+
+== ==
+
+ The two following figures visually illustrate the overhead. For the sake of readability, execution times with too much overhead have been separated from the evaluations with little overhead.
+
++Comparison of execution times for Anonymous Classes, MetaLink and Talents>file://figures/chart-1.png+
+
++Comparison of execution times for Ghost and Change Detector>file://figures/chart-2.png+
+
+!!!Property evaluation overview
+
+The following table reports the property evaluation described in Chapter *@intro*. For detailed analysis, please report to chapters 3 to 7.
+
+|!Prop.|!Anon. Classes|!MetaLink|!Talents|!Ghost|!Chg Detec.
+|!Entity| Classes | Metalinks | Traits | Classes | Objects
+|!Reusability | Partial | Yes | Yes | Yes | Yes
+|!Flexibility | None| Partial | Partial | Partial | Limited
+|!Granularity | Method | Sub-method | Method | Method | State access
+|!Integration | Partial| Partial | Partial | Full | Full
+|!Self pb. | Solved| Solved | Solved | Solved | N/A
+|!Super pb. | Unsolved | Solved | Solved | Solved | N/A

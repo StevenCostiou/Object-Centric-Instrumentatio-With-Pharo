@@ -67,11 +67,15 @@ Each solution is evaluated against the following desirable properties.
 
 !!!Performance overhead evaluation
 
-To provide a approximation of the performance overhead due to instrumentation, we compare the execution time of a block of code using an instrumented object with a reference execution time of a block of code using a non-instrumented object. The method ==evaluateOverheadFor:== from the following script shows how execution time is computed. The parameter is an instance of ==Person==. The ==#name:== message is sent 1000000 times to the ==Person== instance, and the overall execution time is returned. This returned time is used to compare execution time of an instrumented instance against the execution time of a non-instrumented instance.
+To provide a approximation of the performance overhead due to instrumentation, we compare the execution time of a block of code using an instrumented object with a reference execution time of a block of code using a non-instrumented object. The method ==evaluateOverheadFor:== from the following script shows how execution time is computed. The parameter is an instance of ==Person==. The ==#name:== message is sent 100000000 times to the ==Person== instance, and the overall execution time is returned. This returned time is used to compare execution time of an instrumented instance against the execution time of a non-instrumented instance.
 
 [[[
 ObjectCentricOverheadEvaluation>>evaluateOverheadFor: aPerson
-	^[  timesRepeat: [ aPerson name: 'eval' ] ] timeToRun
+	^[ 100000000 timesRepeat: [ aPerson name: 'eval' ] ] timeToRun
 ]]]
 
-The non-instrumented instance is an instance of a modified ==Person== class in which the instrumentation is hardcoded. It is a means to obtain a reference execution time with instrumentation applied as if it were originally part of the program. Instrumented instances are instances of ==Person== for which one of the studied solutions is used to apply the same instrumentation as the hardcoded one for the reference execution time. Performance overhead is evaluated for each solution following the aforementioned protocol. 
+The non-instrumented instance is an instance of a modified ==Person== class in which the instrumentation is hardcoded. It is a means to obtain a reference execution time with instrumentation applied as if it were originally part of the program. Instrumented instances are instances of ==Person== for which one of the studied solutions is used to apply the same instrumentation as the hardcoded one for the reference execution time. Performance overhead is evaluated for each solution following the aforementioned protocol.
+
+Measurements are made using the following software and hardware:
+- Pharo 7, macOS High Sierra
+- MacBook Pro 2017, 2,2 GHz Intel Core i5 (2 cores), 16 GB 2133 MHz LPDDR3

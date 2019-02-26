@@ -1,7 +1,61 @@
-!!Change Detector
+!!Change Detector on Read Only Objects
+
+Objects can be put in read-only mode. When the read-only flag is set on an object, the VM cannot write into this object. Any attempt to change a value in an instance variable will fail, and raise an exception. The Change Detector is an experimental project which uses the read-only feature of the VM to monitor and instrument state-access at the level of objects. For every attempt to write into an instance variable of a monitored object, the change detector performs the following steps in order:
+- The object is changed to be writeable,
+- an exception is raised with contextual data about the write attempt,
+- the exception is forwarded to a set of user-defined monitor objects, which can perform custom behavior,
+- the state is actually written,
+- and the object is put back to read-only mode.
 
 !!!Example
 
+We implement an ==Instrumenter== class, which aims at monitoring particular state-accesses of objects. We first implement the ==instrumentWithReadOnly:== method which takes the monitored object as parameter (line 1). This method configures the object to notify ==Instrumenter== instances when an attempt to write in one of its instance variable is made. This is done through the ==notifyOnChange:== interface, which is available for every object. We then implement a callback (line 4-9), which is executed when attempting to write the state of a monitored object. A ==modification== reification is passed to the callback, and contains contextual information about the state access attempt. We know the object that was accessed and the field to which a write access has been attempted. In our example, we only care to intercept write access to the ==name== instance variable and do nothing specific for other state access (line 7-8). The instrumentation for our scenario is performed only for write attempts to the ==name== instance variable (line 9).
+
+[[[
+Instrumenter>>instrumentWithReadOnly: anObject
+	anObject notifyOnChange: self
+
+Instrumenter>>objectChangeNotifiedBy: modification
+	| object |
+	object := modification object.
+	(object class instVarNameForIndex: modification fieldIndex) = #name
+		ifFalse: [ ^ self ].
+	object tag: modification newValue
+]]]
 
 !!!Evaluation
-@@todo todo
+""Strengths and weaknesses.""
+;""+""
+:Straightforward and simple instrumentation API
+;""+""
+:Direct interception of write accesses to instance variables
+;""-""
+:Limited to the control of write access to instance variables
+;""-""
+:Much slower than other techniques studied in this booklet
+;""-""
+:Change Detector is still an experimental and exploratory project
+;""-""
+:It appears to have, for now, problems with concurrency
+;""-""
+:Some objects cannot be read-only, see the ==setIsReadOnlyObject:== method
+
+""Manipulated entity: Objects."" Monitored objects are the main entities being manipulated, in addition with user objects plugged on the Change Detector and implementing the instrumentation.
+
+""Reusability: N/A."" Not applicable.
+
+""Flexibility: Limited."" Only writing attempts into instance variables can be intercepted. The responsibility to express how intercepted state access are handled falls to the developer. We only implemented an ''ad-hoc'' solution to control state access within the scope of our example.
+
+""Granularity: State access."" The Change Detector intercepts write attempts into an object's state.
+
+""Integration: Limited."" There are integration problems with tools (''e.g.'' SUnit), possibly involving concurrency and race conditions.
+
+""==Self== problem: N/A."" Not applicable.
+
+""==Super== problem: N/A."" Not applicable.
+
+
+!!!Other documentation
+
+The change detector github repository:
+- https://github.com/MarcusDenker/ChangeDetector

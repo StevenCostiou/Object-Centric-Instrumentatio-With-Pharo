@@ -21,7 +21,7 @@ The following table reports execution times and a time factor for each solution 
 
 +Comparison of execution times for Ghost and Change Detector>file://figures/chart-2.png+
 
-@@note For performance overhead evaluation, we only consider object-centric instrumentation during the writing of an instance variable. Almost all techniques can be used for more general object-centric instrumentation, such as message interception, behavior replacement or behavioral variation. For instance, metalinks can be conditioned, and reify many information from the execution context. In that case the performance overhead may be more significant. The evaluation, for each solution, of general object-centric instrumentation execution cost, is not covered in this book. 
+@@note For performance overhead evaluation, we only consider object-centric instrumentation during the writing of an instance variable. Almost all techniques can be used for more general object-centric instrumentation, such as message interception, behavior replacement or behavioral variation. For instance, metalinks can be conditioned, and reify many information from the execution context. In that case the performance overhead may be more significant. The evaluation, for each solution, of general object-centric instrumentation execution cost, is not covered in this book.
 
 !!!Property evaluation overview
 
@@ -29,7 +29,7 @@ The following table reports the property evaluation described in Chapter *@intro
 
 |!Prop.|!Anon. Classes|!MetaLink|!Talents|!Ghost|!Chg Detec.
 |!Entity| Classes | Metalinks | Traits | Proxies | Objects
-|!Reusability | Partial | Yes | Yes | Yes | Yes
+|!Reusability | Partial | Yes | Yes | Yes | N/A
 |!Flexibility | None| Limited | Limited | Limited | Limited
 |!Granularity | Method | Sub-method | Method | Method | State access
 |!Integration | Limited| Limited | Limited | Full | Full

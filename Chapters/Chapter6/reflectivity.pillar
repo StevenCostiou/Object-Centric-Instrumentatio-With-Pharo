@@ -34,11 +34,11 @@ link uninstall
 
 ""Reusability: Yes."" The same metalink can be put on any AST node, as long as the reifications asked by the user can be provided by that node. A metalink can be installed on different classes as well as on any number of specific objects at the same time.
 
-""Flexibility: Partial."" In some cases, object-centric instrumentation by means of metalinks is non-applicable. For example, an instance variable can be accessed both in a method defined in the object's class and in the method it redefines in the super class. Installing a metalink on all accesses to that instance variable may lead to un-predictable modification of the object's behavior. Both methods have the same signature, yet both are going to be copied down for instrumentation in the anonymous subclass, to which the object will be migrated.
+""Flexibility: Limited."" In some cases, object-centric instrumentation by means of metalinks is non-applicable. For example, an instance variable can be accessed both in a method defined in the object's class and in the method it redefines in the super class. Installing a metalink on all accesses to that instance variable may lead to un-predictable modification of the object's behavior. Both methods have the same signature, yet both are going to be copied down for instrumentation in the anonymous subclass, to which the object will be migrated.
 
 ""Granularity: Sub-Method."" Metalinks can be installed on any sub-node of a method's AST, achieving a very fine granularity for instrumentation.
 
-""Integration: Partial."" Object-centric instrumentation by means of metalinks can break tools relying on meta-information. Typically, tools or libraries relying on structure (class) to discriminate objects will be affected, as instrumented objects are migrated to anonymous subclasses.
+""Integration: Limited."" Object-centric instrumentation by means of metalinks can break tools relying on meta-information. Typically, tools or libraries relying on structure (class) to discriminate objects will be affected, as instrumented objects are migrated to anonymous subclasses.
 
 ""==Self== problem: Solved."" By design, as objects are migrated into anonymous subclasses, ==self== always references the original object.
 

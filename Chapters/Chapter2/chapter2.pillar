@@ -26,10 +26,14 @@ The following table reports execution times and a time factor for each solution 
 The following table reports the property evaluation described in Chapter *@intro*. For detailed analysis, please report to chapters 3 to 7.
 
 |!Prop.|!Anon. Classes|!MetaLink|!Talents|!Ghost|!Chg Detec.
-|!Entity| Classes | Metalinks | Traits | Classes | Objects
+|!Entity| Classes | Metalinks | Traits | Proxies | Objects
 |!Reusability | Partial | Yes | Yes | Yes | Yes
-|!Flexibility | None| Partial | Partial | Partial | Limited
+|!Flexibility | None| Limited | Limited | Limited | Limited
 |!Granularity | Method | Sub-method | Method | Method | State access
-|!Integration | Partial| Partial | Partial | Full | Full
+|!Integration | Limited| Limited | Limited | Full | Full
 |!Self pb. | Solved| Solved | Solved | Solved | N/A
 |!Super pb. | Unsolved | Solved | Solved | Solved | N/A
+
+!!!Evaluation bias
+
+The performance overhead evaluation only consider

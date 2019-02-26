@@ -57,7 +57,7 @@ Each solution is evaluated against the following desirable properties.
 
 ""Flexibility."" We consider the solution to be flexible if it does not put any constraints on the program prior to the instrumentation, and if it does not requires the developer to perform annoying repetitive and error-prone tasks. For example, it must not requires to copy existing code, to use a specific coding-style, or if it cannot apply in certain cases.
 
-""Granularity."" The level of at which behavior can be instrumented. We consider two granularities: method and sub-method. The method granularity can only instrument a whole method, by controlling message passing. The sub-method level can instrument specific elements of a method.
+""Granularity."" The level of at which behavior can be instrumented. We consider three granularities: method, sub-method and state access. The method granularity can only instrument a whole method, by controlling message passing. The sub-method level can instrument specific elements of a method. The state-access granularity enables the interception of direct instance variable access.
 
 ""Integration."" An instrumentation must not break system tools and features nor user libraries and programs.
 

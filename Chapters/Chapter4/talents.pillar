@@ -34,11 +34,11 @@ Talents are based on traits. Objects can answer to the ==#addTalent:== messages 
 
 ""Reusability: Yes."" A trait can be added as a Talent to any number of objects.
 
-""Flexibility: Partial."" Using anonymous traits forces the user to manually compile code in the method. This is however necessary to achieve a sub-method granularity. Conflicts must be resolved manually when Traits are composed.
+""Flexibility: Limited."" Using anonymous traits forces the user to manually compile code in the method. This is however necessary to achieve a sub-method granularity. Conflicts must be resolved manually when Traits are composed.
 
 ""Granularity: Method."" Traits add, remove or alter (through aliasing) the behavior of a method. It can be done at a sub-method level (''e.g.'' inserting a statement in the body of a method), but that requires manual rewriting of the method in the Trait.
 
-""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
+""Integration: Limited."" The object is migrated to an anonymous subclass, which does not break system tools. However, it may break libraries that uses classes and class names as a discriminator.
 
 ""==Self== problem: Solved."" By design, as objects are migrated into anonymous subclasses, ==self== always references the original object.
 

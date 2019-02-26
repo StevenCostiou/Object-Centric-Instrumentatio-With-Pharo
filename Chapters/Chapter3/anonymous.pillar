@@ -38,13 +38,13 @@ Anonymous subclasses are derived from the original class of the object (line 3).
 
 ""Manipulated entity: Classes."" Behavioral variations are expressed in standard methods, compiled in anonymous classes.
 
-""Reusability: Partial."" As an anonymous subclass is derived from the original class of an object, only instances of that same class can be migrated to the anonymous subclass. To apply the same instrumentation to an instance of another class, a new anonymous subclass must be created and the instrumented behavior must be recompiled in that subclass.
+""Reusability: Limited."" As an anonymous subclass is derived from the original class of an object, only instances of that same class can be migrated to the anonymous subclass. To apply the same instrumentation to an instance of another class, a new anonymous subclass must be created and the instrumented behavior must be recompiled in that subclass.
 
 ""Flexibility: None."" Instrumented methods must always be copied down to anonymous subclasses, and instrumentation must be inserted in the duplicated code. Without any tool built on top, that instrumentation is fully manual.
 
 ""Granularity: Method."" Instrumentation is implemented by recompiling modified copies of methods in anonymous subclasses. Sub-method level is achieved through manual rewriting of the method.
 
-""Integration: Partial."" The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
+""Integration: Limited."" The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
 
 ""==Self== problem: Solved."" By design, as objects are migrated into anonymous subclasses, ==self== always references the original object.
 

@@ -61,11 +61,11 @@ To install the proxy, we use the ==GHTargetBasedProxy== from the Ghost proxy mod
 ;""-""
 :Replacement of objects by proxies is not thread-safe
 
-""Manipulated entity: Classes."" Proxies are defined in classes which inherit from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply proxies to objects.
+""Manipulated entity: Proxies."" Proxies are defined in classes which inherit from Ghost internal classes. Typically, developers subclass the base message handler from Ghost to create a proxy model that implements the wanted instrumentation. An API is provided to apply proxies to objects.
 
 ""Reusability: Yes."" The same proxy model can be reused to instrument any kind of object with the same instrumentation.
 
-""Flexibility: Partial."" The responsibility to express how intercepted messages are handled falls to the developer. A proxy and a message handling model must be defined through classes. Specifically, as proxies intercept all messages sent to an object, which messages are handled (partial instrumentation) and which are not (''e.g'' meta-messages) has to be manually defined or implemented through an ''ad-hoc'' solution.
+""Flexibility: Limited."" The responsibility to express how intercepted messages are handled falls to the developer. A proxy and a message handling model must be defined through classes. Specifically, as proxies intercept all messages sent to an object, which messages are handled (partial instrumentation) and which are not (''e.g'' meta-messages) has to be manually defined or implemented through an ''ad-hoc'' solution.
 
 ""Granularity: Method."" A proxy intercepts messages sends to the object it ''proxifies''. It can execute instrumentation behavior before, after or instead the intercepted message. Sub-method instrumentation cannot be achieved by means of proxies.
 

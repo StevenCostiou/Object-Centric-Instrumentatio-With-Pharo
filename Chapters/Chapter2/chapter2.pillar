@@ -21,6 +21,8 @@ The following table reports execution times and a time factor for each solution 
 
 +Comparison of execution times for Ghost and Change Detector>file://figures/chart-2.png+
 
+@@note For performance overhead evaluation, we only consider object-centric instrumentation during the writing of an instance variable. Almost all techniques can be used for more general object-centric instrumentation, such as message interception, behavior replacement or behavioral variation. For instance, metalinks can be conditioned, and reify many information from the execution context. In that case the performance overhead may be more significant. The evaluation, for each solution, of general object-centric instrumentation execution cost, is not covered in this book. 
+
 !!!Property evaluation overview
 
 The following table reports the property evaluation described in Chapter *@intro*. For detailed analysis, please report to chapters 3 to 7.
@@ -33,7 +35,3 @@ The following table reports the property evaluation described in Chapter *@intro
 |!Integration | Limited| Limited | Limited | Full | Full
 |!Self pb. | Solved| Solved | Solved | Solved | N/A
 |!Super pb. | Unsolved | Solved | Solved | Solved | N/A
-
-!!!Evaluation bias
-
-The performance overhead evaluation only consider

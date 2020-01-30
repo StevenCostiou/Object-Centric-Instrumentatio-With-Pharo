@@ -25,13 +25,39 @@ The following table reports execution times and a time factor for each solution 
 
 !!!Property evaluation overview
 
-The following table reports the property evaluation described in Chapter *@intro*. For detailed analysis, please report to chapters 3 to 7.
+Each solution presented in this bookis evaluated against the following desirable properties for advanced reflection.
 
-|!Prop.|!Anon. Classes|!MetaLink|!Talents|!Ghost|!Chg Detec.
-|!Entity| Classes | Metalinks | Traits | Proxies | Objects
-|!Reusability | Partial | Yes | Yes | Yes | N/A
-|!Flexibility | None| Limited | Limited | Limited | Limited
-|!Granularity | Method | Sub-method | Method | Method | State access
-|!Integration | Limited| Limited | Limited | Full | Full
-|!Self pb. | Solved| Solved | Solved | Solved | N/A
-|!Super pb. | Unsolved | Solved | Solved | Solved | N/A
+""Granularity.""
+It is the level at which a reflective operation is applicable: method, sub-method and slot.
+At the method granularity, we instrument a whole method by controlling message passing.
+At the sub-method level, we instrument specific elements of a method (*e.g., a specific message send).
+The slot granularity enables the interception of direct variable accesses.
+
+""Object-centric.""
+A reflective operation is object-centric if it is applicable to only one specific object (or a set of selected objects).
+It means that for a given class, only a specific target instance is affected by reflection.
+All other instances of that class are not affected.
+
+""Scope.""
+We consider two possible scopes for reflective operations: local and global.
+Local reflection only touches very restricted and selected part of the running code.
+Global reflection affects large parts or all of the running program.
+
+""Manipulated abstraction.""
+It is the entity developers and tools manipulate to express, install and control reflective operations.
+For example: classes, traits, objects, methods, etc.
+Some solutions bring their own abstraction to deal with reflection.
+
+The following table reports our evaluation of the presented solutions against the properties described above.
+In addition, each chapter in the rest of this book provides a detailed analysis for the solution it presents.
+
+| !Property | !Granularity | !Object-centric | !Scope | !Abstraction
+| Anonymous classes | methods | yes | local | class
+| Method Wrappers | methods | no | global | ?
+| Reflectivity | sub-method | yes | local | Metalink
+| Talents | methods | yes | local | Trait
+| Proxies | methods | yes | local | objects
+| Change Detector | slot | no | local | slot
+| AOP | sub-method? | no | global | aspects
+
+Handles? Mirrors? Membranes? (not sure if all those are reflection per se, I need to check more in details).

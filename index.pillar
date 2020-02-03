@@ -11,14 +11,16 @@ ${inputFile:path=Chapters/Chapter1/chapter1.pillar}$
 
 ${inputFile:path=Chapters/Chapter2/chapter2.pillar}$
 
-${inputFile:path=Chapters/Chapter3/anonymous.pillar}$
+${inputFile:path=Chapters/Chapter3/wrappers.pillar}$
 
-${inputFile:path=Chapters/Chapter4/talents.pillar}$
+${inputFile:path=Chapters/Chapter4/anonymous.pillar}$
 
-${inputFile:path=Chapters/Chapter5/proxies.pillar}$
+${inputFile:path=Chapters/Chapter5/talents.pillar}$
 
-${inputFile:path=Chapters/Chapter6/reflectivity.pillar}$
+${inputFile:path=Chapters/Chapter6/proxies.pillar}$
 
-${inputFile:path=Chapters/Chapter7/misc.pillar}$
+${inputFile:path=Chapters/Chapter7/reflectivity.pillar}$
 
-${inputFile:path=Chapters/Chapter8/conclusion.pillar}$
+${inputFile:path=Chapters/Chapter8/misc.pillar}$
+
+${inputFile:path=Chapters/Chapter9/conclusion.pillar}$

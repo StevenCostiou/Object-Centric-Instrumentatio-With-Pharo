@@ -1,0 +1,63 @@
+!!Summary of the overall evaluations
+If you already know Pharo and (some of) the presented technique, this chapter is a global summary of the overall evaluation. It contains spoilers, obviously. Results are not commented nor detailed. The performance overhead evaluation, described in Chapter *@intro*, speaks for itself, while the property evaluation is detailed in each chapter.
+
+!!!Performance overhead evaluation
+
+The following table reports execution times and a time factor for each solution against the reference code (see Chapter *@intro*).
+
+|!Solution |!Execution time (ms) |!Time Factor
+|Reference execution| 935 | x1
+|Anonymous Classes | 968 |x1.035
+|MetaLink | 984 |x1.052
+|Talents | 958 |x1.025
+|Ghost | 41500 |x44.38
+|Change Detector | 532496 |x570
+
+== ==
+
+ The two following figures visually illustrate the overhead. For the sake of readability, execution times with too much overhead have been separated from the evaluations with little overhead.
+
++Comparison of execution times for Anonymous Classes, MetaLink and Talents>file://figures/chart-1.png+
+
++Comparison of execution times for Ghost and Change Detector>file://figures/chart-2.png+
+
+@@note For performance overhead evaluation, we only consider object-centric instrumentation during the writing of an instance variable. Almost all techniques can be used for more general object-centric instrumentation, such as message interception, behavior replacement or behavioral variation. For instance, metalinks can be conditioned, and reify many information from the execution context. In that case the performance overhead may be more significant. The evaluation, for each solution, of general object-centric instrumentation execution cost, is not covered in this book.
+
+!!!Property evaluation overview
+
+Each solution presented in this bookis evaluated against the following desirable properties for advanced reflection.
+
+""Granularity.""
+It is the level at which a reflective operation is applicable: method, sub-method and slot.
+At the method granularity, we instrument a whole method by controlling message passing.
+At the sub-method level, we instrument specific elements of a method (*e.g., a specific message send).
+The slot granularity enables the interception of direct variable accesses.
+
+""Object-centric.""
+A reflective operation is object-centric if it is applicable to only one specific object (or a set of selected objects).
+It means that for a given class, only a specific target instance is affected by reflection.
+All other instances of that class are not affected.
+
+""Scope.""
+We consider two possible scopes for reflective operations: local and global.
+Local reflection only touches very restricted and selected part of the running code.
+Global reflection affects large parts or all of the running program.
+
+""Manipulated abstraction.""
+It is the entity developers and tools manipulate to express, install and control reflective operations.
+For example: classes, traits, objects, methods, etc.
+Some solutions bring their own abstraction to deal with reflection.
+
+The following table reports our evaluation of the presented solutions against the properties described above.
+In addition, each chapter in the rest of this book provides a detailed analysis for the solution it presents.
+
+| !Property | !Granularity | !Object-centric | !Scope | !Abstraction
+| Anonymous classes | methods | yes | local | class
+| Method Wrappers | methods | no | global | ?
+| Reflectivity | sub-method | yes | local | Metalink
+| Talents | methods | yes | local | Trait
+| Proxies | methods | yes | local | objects
+| Change Detector | slot | no | local | slot
+| AOP | sub-method? | no | global | aspects
+
+Handles? Mirrors? Membranes? (not sure if all those are reflection per se, I need to check more in details).

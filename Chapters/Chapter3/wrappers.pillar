@@ -1,0 +1,57 @@
+!!Method Wrappers
+@wrappers
+
+Anonymous classes are nameless classes that are inserted between an object and its original class ${cite:foote1989reflective,hinkle1993debugging}$. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved. It is one of the fastest implementation for object-centric instrumentation ${cite:ducasse1999evaluating}$.
+
+!!!Example
+
+Anonymous subclasses are derived from the original class of the object (line 3). Methods must be manually (re)written with instrumentation and compiled in the new class (line 4-8). Then the object has to be migrated to its new class (line 10). To rollback the instrumentation, the object must be manually migrated back to its original class (line 12). The migration is not ''safe'' if more than one process is using the instrumented object.
+[[[
+|person anonClass|
+  person := Person new.
+	anonClass := anObject class newAnonymousSubclass.
+	anonClass
+		compile:
+			'name: aName
+				self tag: aName.
+				name := aName'.
+  "migrates the object to its new class"
+	anonClass adoptInstance: person.
+  "migrates back the object to its original class"
+  anonClass superclass adoptInstance: person.
+]]]
+
+
+!!!Evaluation
+
+""Strengths and weaknesses.""
+;""+""
+:Fastest known technique for object-centric instrumentation in Pharo
+;""+""
+:Interesting starting point to build solutions on top
+;""-""
+:No abstraction to control or to express object-centric instrumentation
+;""-""
+:Very low flexibility regarding the modification of the instrumentation (manual copy and removal of methods to and from anonymous classes)
+;""-""
+:Migration of objects to anonymous subclasses is not thread-safe
+
+""Manipulated entity: Classes."" Behavioral variations are expressed in standard methods, compiled in anonymous classes.
+
+""Reusability: Limited."" As an anonymous subclass is derived from the original class of an object, only instances of that same class can be migrated to the anonymous subclass. To apply the same instrumentation to an instance of another class, a new anonymous subclass must be created and the instrumented behavior must be recompiled in that subclass.
+
+""Flexibility: None."" Instrumented methods must always be copied down to anonymous subclasses, and instrumentation must be inserted in the duplicated code. Without any tool built on top, that instrumentation is fully manual.
+
+""Granularity: Method."" Instrumentation is implemented by recompiling modified copies of methods in anonymous subclasses. Sub-method level is achieved through manual rewriting of the method.
+
+""Integration: Limited."" The object is migrated to an anonymous subclass, which does not break system tools. However, it is explicit that the object is now instance of an anonymous subclass. It may also break libraries and tools that use classes and class names as a discriminator.
+
+""==Self== problem: Solved."" By design, as objects are migrated into anonymous subclasses, ==self== always references the original object.
+
+""==Super== problem: Not solved."" There are no means to express how to resolve the lookup when a message is sent to ==super== from a method copied down in an anonymous subclass.
+
+!!!Other documentation
+The Pharo Mooc provides materials on object-centric instrumentation based on object class migration and its flavours:
+
+- http://rmod-pharo-mooc.lille.inria.fr/MOOC/Slides/Week7/C019-W7S04-OtherReflective.pdf
+- http://rmod-pharo-mooc.lille.inria.fr/MOOC/WebPortal/co/content_78.html

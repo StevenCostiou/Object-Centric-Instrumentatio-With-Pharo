@@ -1,7 +1,18 @@
 !!Anonymous subclasses
 @anonymous
 
-Anonymous classes are nameless classes that are inserted between an object and its original class ${cite:foote1989reflective,hinkle1993debugging}$. The object is migrated to that new class, which takes the original object's class as its superclass. Methods from the original class can be redefined and reimplemented in the anonymous class, having the effect to change the behavior of that single object. Original behavior that is not redefined in the anonymous subclass is preserved. It is one of the fastest implementation for object-centric instrumentation ${cite:ducasse1999evaluating}$.
+Anonymous classes are nameless classes that are not registered in the system.
+Like standard classes, an anonymous class inherits from a parent class and specializes some of its parent structure and behavior.
+Anonymous classes are a convenient and powerful means for object-centric reflection, for example to control message passing for an individual object.
+
+To provide us with object-centric reflection, an anonymous subclass is dynamically inserted between a target object and its original class ${cite:foote1989reflective,hinkle1993debugging}$.
+The target object is then migrated to that anonymous class.
+Object-centric reflective operations are implemented and applied by adding or redefining methods and structure in the anonymous class, that is now the active target object's class.
+
++(A) An object ''o'' is instance of a class ''C''. (B) An anonymous subclass of ''C'' implements object-centric behavior and structure, and ''o'' is migrated to that anonymous class.>file://figures/anon-classes.pdf+
+
+Original behavior that is not redefined in the anonymous subclass is preserved.
+It is one of the fastest implementation for object-centric instrumentation ${cite:ducasse1999evaluating}$.
 
 !!!Example
 

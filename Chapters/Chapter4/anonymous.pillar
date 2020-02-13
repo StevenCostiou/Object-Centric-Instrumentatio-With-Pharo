@@ -30,18 +30,26 @@ It is one of the fastest known implementation for object-centric instrumentation
 !!!Example
 
 Anonymous subclasses are derived from the original class of the object (line 3). Methods must be manually (re)written with instrumentation and compiled in the new class (line 4-8). Then the object has to be migrated to its new class (line 10). To rollback the instrumentation, the object must be manually migrated back to its original class (line 12). The migration is not ''safe'' if more than one process is using the instrumented object.
+
 [[[
-|person anonClass|
+  |person anonClass|
   person := Person new.
 	anonClass := anObject class newAnonymousSubclass.
+]]]
+
+[[[
 	anonClass
 		compile:
 			'name: aName
 				self tag: aName.
 				name := aName'.
-  "migrates the object to its new class"
+]]]
+
+[[[
 	anonClass adoptInstance: person.
-  "migrates back the object to its original class"
+]]]
+
+[[[
   anonClass superclass adoptInstance: person.
 ]]]
 

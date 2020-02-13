@@ -11,8 +11,21 @@ Object-centric reflective operations are implemented and applied by adding or re
 
 +(A) An object ''o'' is instance of a class ''C''. (B) An anonymous subclass of ''C'' implements object-centric behavior and structure, and ''o'' is migrated to that anonymous class.>file://figures/anon-classes.pdf+
 
-Original behavior that is not redefined in the anonymous subclass is preserved.
-It is one of the fastest implementation for object-centric instrumentation ${cite:ducasse1999evaluating}$.
+The granularity of reflective operations is the method.
+A typical example is to redefine a method from the target object's class in the anonymous subclass.
+In this redefined method, we control how the object responds to the corresponding message.
+The behavior of methods that are not redefined in the anonymous class is preserved, and message passing is not controlled in that case.
+
+From a structural point of view, it is not transparent to the system.
+First, tools and users' code needing to access objects classes will be affected.
+For instance, if an object ==o== instance of a class ==C== is migrated to an anonymous class, then all users of that object requesting its class will now see the object as an instance of ==anAnonymousClassOfC==.
+
+Second, adding instance variables to the anonymous class will obviously change the structure of the object.
+The behavior of users checking for the equality of an instrumented object with other objects may be impacted.
+
+Affected tools will be, for example, the inspector or the debugger.
+
+It is one of the fastest known implementation for object-centric instrumentation ${cite:ducasse1999evaluating}$.
 
 !!!Example
 

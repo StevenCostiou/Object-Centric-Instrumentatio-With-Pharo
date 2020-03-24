@@ -62,14 +62,14 @@ This method installs an ==haltOnCall== breakpoint on our object, and returns the
 It is very important to keep a reference to that instrumenter object if we want to uninstall our breakpoint later.
 This would typically be handled by a higher level tool such as a real debugger.
 
-This method is now our top-level API, is available for all objects in the system.
+This method is now our top-level API, available for all objects in the system.
 Thanks to this API, we can now ask any object to halt when it receives a particular message.
 
 Now, we have to create the ==ObjectCentricInstrumenter== class and implement the ==halt:for:== method.
 This class inherits from ==Object== and has three instance variables:
-- ==targetObject==: the target object we instrument
-- ==metalink==: the instrumentation per se, that is a metalink as we use Reflectivity in this example
-- ==methodNode==: the AST node representing the method in the object we instrument
+- ==targetObject==: the target object we instrument;
+- ==metalink==: the instrumentation per se, that is a metalink as we use Reflectivity in this example;
+- ==methodNode==: the AST node representing the method in the object we instrument.
 
 [[[
 Object subclass: #ObjectCentricInstrumenter
@@ -80,11 +80,12 @@ Object subclass: #ObjectCentricInstrumenter
 
 In this class, we have to define how we install the ==haltOnCall== breakpoint on our object.
 This is done through the ==halt:for:== method.
-This method takes two parameters: the selector corresponding to the method to break and the object on which installing the breakpoint.
+This method takes two parameters: the selector corresponding to the method to break and the object the breakpoint will affect.
 First, we store the target object and we configure our metalink (l. 2).
 This metalink is configured to send the message ==#now== to the ==Halt== class 'before' the execution of the entity it will instrument (l. 3-6).
 Finally, we use Reflectivity's object-centric API to install that metalink on the given selector in the target object (l. 7).
-When that is done, the target object and only this object will halt each time it receives the message ==methodSelector==, before executing the corresponding method.
+When that is done, the target object will halt each time it receives the message ==methodSelector==, before executing the corresponding method.
+All other objects from the system remain unaffected by the breakpoint.
 
 [[[
 ObjectCentricInstrumenter>>halt: methodSelector for: anObject

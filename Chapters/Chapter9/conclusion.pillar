@@ -3,13 +3,13 @@ pwd!!Towards an object-centric debugger in Pharo
 The idea is that any object has an API.
 Calling this API applies object-centric debugging operators to that object.
 This API is used to implement object-centric debuggers.
+@@todo confusing paragraph: why would the domain API apply debug operators and be also used to implement debuggers?
 
-In this section, we illustrate how we can implement a simple object-centric debugger using object-centric reflection.
-We propose to use Reflectivity as a backend for object-centric reflection.
+In this section, we illustrate how we can implement a simple object-centric debugger using Reflectivity as a backend for reflection.
 
 !!!Basic structure of the debugger
 
-Our debugger will be composed of three superposed layers built on-top of each other.
+Our debugger will be composed of three superposed layers built on top of each other.
 The first and lower layer is the reflective framework that we'll use to instrument our objects.
 In our example, we'll use Reflectivity.
 
@@ -39,31 +39,31 @@ In this chapter, we'll focus on two examples:
 
 !!!!Implementing an object-centric breakpoint API
 
-Let's take a simple example: imagine two points objects ==p1== and ==p2==.
+Let's take a simple example: imagine two ==Point== instances ==p1== and ==p2==.
 [[[
-point p1 := 0@2.
-point p2 := 1@3.
+p1 := 0@2.
+p2 := 1@3.
 ]]]
 Each of these points has two instance variables, ==x== and ==y==, that we can change by calling the ==setX:setY:== method.
-Imagine that we have a bug related to point ==p1== and that we want to halt when this object executes the ==setX:setY:== method.
-We don't want to put a breakpoint directly in the ==setX:setY:== method, because all points in the system will halt when that method is called.
-We want only ==p1== to stop when ==setX:setY:== is called.
+Imagine that we have a bug related to point ==p1==, and that we want to halt when this object executes the ==setX:setY:== method.
+We definitely do ''not'' want to put a breakpoint directly in the ==setX:setY:== method, because points are used all over the system and all of them would halt when that method is called.
 
-This breakpoint is an operator called ==haltOnCall==, defined by Ressia in his Object-Centric debugger ${cite:Ress12a}$.
-It halts whenever one specific object receives a given message.
+We want to stop only when ==setX:setY:== is called on ==p1==.
+
+This breakpoint is an operator called ''halt-on-call'', defined by Jorge Ressia in his Object-Centric debugger ${cite:Ress12a}$; it halts whenever one specific object receives a given message.
 Let's define an interface for this operator in the ==Object== class:
-
 [[[
-Object>>haltOnCallTo: methodSelector
-  ^ObjectCentricInstrumenter new halt: methodSelector for: self
+Object >> haltOnCallTo: methodSelector
+  ^ ObjectCentricInstrumenter new
+      halt: methodSelector for: self
 ]]]
 
-This method installs an ==haltOnCall== breakpoint on our object, and returns the object modeling that instrumentation.
+This message installs a ''halt-on-call'' breakpoint on its receiver, and returns the object modeling that instrumentation.
 It is very important to keep a reference to that instrumenter object if we want to uninstall our breakpoint later.
 This would typically be handled by a higher level tool such as a real debugger.
 
 This method is now our top-level API, available for all objects in the system.
-Thanks to this API, we can now ask any object to halt when it receives a particular message.
+Using this API, we can now ask any object to halt when it receives a particular message.
 
 Now, we have to create the ==ObjectCentricInstrumenter== class and implement the ==halt:for:== method.
 This class inherits from ==Object== and has three instance variables:
@@ -78,33 +78,34 @@ Object subclass: #ObjectCentricInstrumenter
 	package: 'Your-Pharo-Package'
 ]]]
 
-In this class, we have to define how we install the ==haltOnCall== breakpoint on our object.
+In this class, we have to define how we install the ''halt-on-call'' breakpoint on our object.
 This is done through the ==halt:for:== method.
-This method takes two parameters: the selector corresponding to the method to break and the object the breakpoint will affect.
-First, we store the target object and we configure our metalink (l. 2).
-This metalink is configured to send the message ==#now== to the ==Halt== class 'before' the execution of the entity it will instrument (l. 3-6).
-Finally, we use Reflectivity's object-centric API to install that metalink on the given selector in the target object (l. 7).
-When that is done, the target object will halt each time it receives the message ==methodSelector==, before executing the corresponding method.
-All other objects from the system remain unaffected by the breakpoint.
+This method takes two parameters: the selector of the message and the target object that the breakpoint will affect.
+First, we store the ==targetObject==.
+Then, we configure a metalink to send the message ==#now== to the ==Halt== class ''before'' the execution of the entity it will instrument.
+Finally, using Reflectivity's object-centric API, we install that metalink on the given selector in the target object.
+
+When that is done, ==targetObject== will halt whenever it receives the message ==methodSelector==, but just before executing its corresponding method.
+All other objects from the system remain unaffected by the new breakpoint.
 
 [[[
-ObjectCentricInstrumenter>>halt: methodSelector for: anObject
+ObjectCentricInstrumenter >> halt: methodSelector for: anObject
 	targetObject := anObject.
 	metalink := MetaLink new
 		metaObject: Halt;
 		selector: #now;
-		control: before.
+		control: #before.
 	targetObject link: metalink toMethodNamed: methodSelector
 ]]]
 
-If we summarize our example, we have the following code.
+Our scenario is summarized by the following code.
 We instrument our point ==p1== with an object-centric breakpoint on the ==setX:setY:== method.
 We store the instrumenter object in the ==instrumenter== variable so that we can reuse it later.
 Calling ==setX:setY:== this method on ==p1== will halt the system, while calling it on ==p2== or any other point will not halt.
 
 [[[
-point p1 := 0@2.
-point p2 := 1@3.
+p1 := 0@2.
+p2 := 1@3.
 instrumenter := p1 haltOnCallTo: #setX:setY:.
 p1 setX: 4 setY: 2. "<- halt!"
 p2 setX: 5 setY: 3. "<- no halt"
@@ -116,7 +117,7 @@ Let's define an uninstall method in the ==ObjectCentricInstrumenter== class.
 This method just calls the uninstall behavior of the metalink, removing all instrumentation from the target object.
 
 [[[
-ObjectCentricInstrumenter>>uninstall
+ObjectCentricInstrumenter >> uninstall
 	metalink uninstall
 ]]]
 
@@ -138,12 +139,25 @@ p2 setX: 5 setY: 3. "<- no halt"
 In this version we will instrument an object to record all changes in one of its instance variables
 
 [[[
-Object>>recordValuesStoredIn: instVarName
-	^ObjectCentricInstrumenter new recordValuesWrittenTo: instVarName for: self
-
+Object >> recordValuesStoredIn: instVarName
+  ^ ObjectCentricInstrumenter new
+      recordValuesWrittenTo: instVarName for: self
 ]]]
 
-
+[[[
+ObjectCentricInstrumenter >> recordValuesWrittenTo: instVarName for: anObject
+  targetObject := anObject.
+  values := OrderedCollection new.
+  metalink := MetaLink new
+    metaObject: self;
+    selector: #recordValue:;
+    arguments: #(value);
+    control: #after.
+  targetObject
+    link: metalink
+    toSlotNamed: instVarName
+    option: #write
+]]]
 
 
 
@@ -153,7 +167,7 @@ myObject
 ]]]
 
 [[[
-ObjectCentricCallInterceptor>>intercept:Object
+ObjectCentricCallInterceptor >> intercept:Object
 after
 before
 instead

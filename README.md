@@ -1,10 +1,11 @@
 # Advanced Reflection with Pharo
-A booklet on advanced reflection techniques available in Pharo. 
+
 [![Download][dl-image-shield]][dl-image-link]
 
+A booklet on advanced reflection techniques available in Pharo. 
 
 
-[dl-image-shield]: https://img.shields.io/badge/Download-current-green
+[dl-image-shield]: https://img.shields.io/badge/Download-PDF-red
 [dl-image-link]: https://github.com/StevenCostiou/Object-Centric-Instrumentatio-With-Pharo/blob/master/Object-Centric-Instrumentation-With-Pharo.pdf
 
 ***

@@ -124,8 +124,8 @@ ObjectCentricInstrumenter >> uninstall
 Our little example script becomes:
 
 [[[
-point p1 := 0@2.
-point p2 := 1@3.
+p1 := 0@2.
+p2 := 1@3.
 instrumenter := p1 haltOnCallTo: #setX:setY:.
 p1 setX: 4 setY: 2. "<- halt!"
 p2 setX: 5 setY: 3. "<- no halt"
@@ -159,19 +159,11 @@ ObjectCentricInstrumenter >> recordValuesWrittenTo: instVarName for: anObject
     option: #write
 ]]]
 
-
-
 [[[
-myObject
-
+accessors
 ]]]
 
-[[[
-ObjectCentricCallInterceptor >> intercept:Object
-after
-before
-instead
-]]]
+
 
 !!!Implementing the object-centric debugger API
 

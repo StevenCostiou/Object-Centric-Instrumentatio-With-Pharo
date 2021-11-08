@@ -1,4 +1,4 @@
-pwd!!Towards an object-centric debugger in Pharo
+!!Towards an object-centric debugger in Pharo
 
 The idea is that any object has an API.
 Calling this API applies object-centric debugging operators to that object.
